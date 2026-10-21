@@ -1,9 +1,11 @@
 # Validation and release scope
 
-Version: 0.1.0rc1. This is the first public release; no prior public adoption, download totals,
+Version: 0.1.0rc2 candidate. The initial 0.1.0rc1 evidence below remains a historical baseline;
+the candidate's release notes and linked CI identify its final run and artifact checks.
+No prior public adoption, download totals,
 external customers or long-running public maintenance history are claimed.
 
-## Local evidence
+## Initial 0.1.0rc1 local evidence
 
 - Complete synthetic functional suite: 662 passed, 0 failed, 3 skipped; 857.29 seconds.
 - All 21 property tests retained max_examples=1000; no claim of 21000 distinct inputs is made.

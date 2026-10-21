@@ -4,7 +4,11 @@
 
 適合自行整理 OHLCV 資料的量化研究者與 Python 資料工程師，在研究或回測前先檢查輸入資料。
 
-[English](README.md) · [0.1.0rc1 預發布版](https://github.com/linqingzi/candle-audit-kit/releases/tag/0.1.0rc1) · [MIT](LICENSE) · [CI](https://github.com/linqingzi/candle-audit-kit/actions/workflows/ci.yml)
+[English](README.md) · [0.1.0rc2 候選版](https://github.com/linqingzi/candle-audit-kit/releases/tag/0.1.0rc2) · [MIT](LICENSE) · [CI](https://github.com/linqingzi/candle-audit-kit/actions/workflows/ci.yml)
+
+**先看報告，無需安裝：** [直接閱讀中文合成報告](https://linqingzi.github.io/candle-audit-kit/examples/synthetic-report.html) · [English report](https://linqingzi.github.io/candle-audit-kit/examples/synthetic-report.en.html) · [預覽與本機試用入口](https://linqingzi.github.io/candle-audit-kit/)。
+
+公開預覽只展示固定的合成範例，沒有檔案上傳功能。實際稽核需在本機執行程式。
 
 ![實際執行八根合成小時 K 線產生的 HTML 報告，保留合成資料標籤及來源準確性 UNVERIFIED 狀態。](docs/images/synthetic-report.jpg)
 
@@ -12,11 +16,10 @@
 
 ## 快速上手
 
-需要 CPython 3.11–3.14 與 macOS 或 Linux。下方建立環境時，請使用你已安裝的支援版本。首次安裝會從官方 PyPI 下載套件；合成範例本身不需網路、帳戶或 API 密鑰。
+要在本機執行，先下載 [0.1.0rc2 原始碼 ZIP](https://github.com/linqingzi/candle-audit-kit/releases/download/0.1.0rc2/candle-audit-kit-0.1.0rc2.zip) 並解壓縮，不需要 Git。需有 CPython 3.11–3.14 與 macOS 或 Linux；下方建立環境時請使用已安裝的支援版本。首次安裝會從官方 PyPI 下載套件；合成範例本身不需網路、帳戶或 API 密鑰。目前仍為候選版，並非穩定版。
 
 ```sh
-git clone https://github.com/linqingzi/candle-audit-kit.git
-cd candle-audit-kit
+cd candle-audit-kit-0.1.0rc2
 python3.11 -m venv .venv
 . .venv/bin/activate
 python -m pip install --index-url https://pypi.org/simple .
@@ -38,7 +41,9 @@ candle-audit demo --root data/demo
 
 開啟 `report.html_path` 指向的檔案，位置在 `data/demo/reports/`。HTML 報告可獨立離線查看。完整 CSV、原始 JSON、metadata、source、request 及 pages 輸入位於 `data/demo/inputs/`，原始合成樣例也在 [examples/synthetic](examples/synthetic)。你改過的範例輸入不會被默默覆寫。安裝時間視網路與原生套件是否可取得而定。
 
-本次 `main` 新增可選的 `--language en` 英文 HTML 展示，`demo` 與 `report` 均可使用；省略時保留原中文預設。JSON 證據的格式與文字不隨展示語言變更。既有 `0.1.0rc1` 壓縮包早於此功能，未變更。中文版首頁保留原中文報告圖；英文版改用真實生成的英文圖。
+`0.1.0rc2` 候選版已包含可選的 `--language en` 英文 HTML 展示，`demo` 與 `report` 均可使用；省略時保留原中文預設。JSON 證據的格式與文字不隨展示語言變更。既有 `0.1.0rc1` 壓縮包早於此功能，未變更。中文版首頁保留原中文報告圖；英文版使用真實生成的英文圖。
+
+開發者也可複製 Git 倉庫，再從根目錄執行相同安裝步驟。下載檔的 SHA256 記錄列在發布頁的 `SHA256SUMS.txt`。
 
 ## 能檢查什麼
 

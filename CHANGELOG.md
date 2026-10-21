@@ -1,8 +1,12 @@
 # Changelog
 
-## Unreleased on main — 2026-10-21
+## 0.1.0rc2 — 2026-10-21 (prerelease)
 
-- Add optional English HTML views through `demo --language en` and `report --language en`.
+- Add an install-free static entry for reading the real English/Chinese synthetic reports,
+  followed by a versioned ZIP and local demo instructions. The page accepts no visitor files.
+- Align the package version, candidate download, bilingual quick start and packaging checks.
+
+- Include optional English HTML views through `demo --language en` and `report --language en`.
   Chinese remains the default; machine-readable JSON evidence, exact data and validation rules
   are unchanged. The existing 0.1.0rc1 release/tag/archive is not replaced.
 - Replace the English README's Chinese report image with an actual generated English report;
@@ -18,7 +22,7 @@
 - Removed unrelated application configuration, hidden metadata and internal evidence references.
 - Adopted MIT for project material after the maintainer confirmed development under their
   direction with Codex and authorized MIT. Dependency copyright/terms remain unchanged.
-  This is a local pre-release, not a public upload or a market-data certification.
+  This initial standalone release does not certify market data.
 - Both source and wheel distributions retain the original dependency license texts; a wheel
   contents test verifies every promised license file byte-for-byte.
 - Three unavailable pre-standalone historical-artifact cases are explicitly skipped; added

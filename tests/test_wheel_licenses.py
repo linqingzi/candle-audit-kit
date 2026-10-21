@@ -21,10 +21,10 @@ def test_wheel_preserves_project_and_dependency_license_texts(tmp_path):
     retained += [p for p in (root / "licenses").rglob("*") if p.is_file()]
     assert any("third-party" in p.parts for p in retained)
     with zipfile.ZipFile(wheels[0]) as wheel:
-        metadata = wheel.read("candle_audit_kit-0.1.0rc1.dist-info/METADATA").decode()
+        metadata = wheel.read("candle_audit_kit-0.1.0rc2.dist-info/METADATA").decode()
         assert "License-Expression: MIT\n" in metadata
         for path in retained:
-            member = ("candle_audit_kit-0.1.0rc1.dist-info/licenses/"
+            member = ("candle_audit_kit-0.1.0rc2.dist-info/licenses/"
                       + path.relative_to(root).as_posix())
             assert member in wheel.namelist(), "missing license text: " + str(path.relative_to(root))
             assert wheel.read(member) == path.read_bytes()

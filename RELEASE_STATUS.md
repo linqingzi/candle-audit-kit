@@ -1,13 +1,15 @@
 # Release status
 
-Version: 0.1.0rc1. Project license: MIT, adopted after maintainer source/permission confirmation.
-This is the first public pre-release. Repository/release metadata on GitHub record its public
-publication. Personal grant applications are separate from project licensing and validation.
+Version: 0.1.0rc2 candidate. Project license: MIT, adopted after maintainer source/permission confirmation.
+This remains a prerelease, not a stable release. Repository/release metadata on GitHub record
+publication and final validation outcomes. Personal grant applications are separate from project licensing and validation.
 See docs/validation.md for evidence scope.
 
-Unreleased on current main: optional English HTML presentation (`--language en`) and a real
-English report capture. Chinese remains the default and JSON evidence is unchanged. These
-changes postdate the 0.1.0rc1 archive; its tag and assets have not been moved or replaced.
+The 0.1.0rc2 candidate includes optional English HTML presentation (`--language en`), an
+install-free static synthetic preview, and matching ZIP/local-trial instructions. Chinese
+remains the default and JSON evidence is unchanged. The older 0.1.0rc1 tag and assets have
+not been moved or replaced. The public static page does not accept user file uploads or run
+audits on visitor data; actual checks execute locally.
 
 The original snapshot, backups, environments and local acceptance evidence remain separate.
 The handoff includes exact test counts, archive hashes and the test/build logs. Long functional

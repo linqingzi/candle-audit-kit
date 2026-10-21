@@ -16,9 +16,9 @@ def test_sdist_carries_interface_documentation_and_all_six_retained_inputs(tmp_p
         check=False,
     )
     assert result.returncode == 0, result.stdout + result.stderr
-    with tarfile.open(tmp_path / "dist/candle_audit_kit-0.1.0rc1.tar.gz") as archive:
+    with tarfile.open(tmp_path / "dist/candle_audit_kit-0.1.0rc2.tar.gz") as archive:
         names = archive.getnames()
-        assert "candle_audit_kit-0.1.0rc1/docs/data_layer_m1.md" in names
+        assert "candle_audit_kit-0.1.0rc2/docs/data_layer_m1.md" in names
         for name in (
             "docs/data_layer_m1.md",
             "README.md",
@@ -30,5 +30,5 @@ def test_sdist_carries_interface_documentation_and_all_six_retained_inputs(tmp_p
             "tests/fixtures/legacy/bars.csv",
         ):
             assert (
-                archive.extractfile("candle_audit_kit-0.1.0rc1/" + name).read() == (root / name).read_bytes()
+                archive.extractfile("candle_audit_kit-0.1.0rc2/" + name).read() == (root / name).read_bytes()
             )

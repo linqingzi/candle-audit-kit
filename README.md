@@ -4,7 +4,11 @@ Audit OKX candle files offline: find gaps and duplicates, reconcile CSV with nat
 
 For quantitative researchers and Python data engineers checking local OHLCV inputs before research or backtesting.
 
-[繁體中文](README.zh-TW.md) · [0.1.0rc1 release](https://github.com/linqingzi/candle-audit-kit/releases/tag/0.1.0rc1) · [MIT](LICENSE) · [CI](https://github.com/linqingzi/candle-audit-kit/actions/workflows/ci.yml)
+[繁體中文](README.zh-TW.md) · [0.1.0rc2 candidate](https://github.com/linqingzi/candle-audit-kit/releases/tag/0.1.0rc2) · [MIT](LICENSE) · [CI](https://github.com/linqingzi/candle-audit-kit/actions/workflows/ci.yml)
+
+**Read first — no installation:** [Open the English sample report](https://linqingzi.github.io/candle-audit-kit/examples/synthetic-report.en.html) · [閱讀中文報告](https://linqingzi.github.io/candle-audit-kit/examples/synthetic-report.html) · [Preview and local trial guide](https://linqingzi.github.io/candle-audit-kit/).
+
+The public preview displays a fixed synthetic example and has no file upload. Local commands run the actual checks on your machine.
 
 ![Actual English Candle Audit Kit HTML report from eight synthetic hourly candles, including English report labels and explicit synthetic-data and unknown-evidence notices.](docs/images/synthetic-report.en.jpg)
 
@@ -12,11 +16,10 @@ For quantitative researchers and Python data engineers checking local OHLCV inpu
 
 ## Quick start
 
-Requires CPython 3.11–3.14 on macOS or Linux. Use your installed supported Python executable in the venv command below. The first install downloads packages from official PyPI; the demo itself needs no network, account or API key.
+To run locally, download the [0.1.0rc2 source ZIP](https://github.com/linqingzi/candle-audit-kit/releases/download/0.1.0rc2/candle-audit-kit-0.1.0rc2.zip) and extract it. No Git client is needed. Requires CPython 3.11–3.14 on macOS or Linux; use your installed supported Python executable in the venv command below. First installation downloads packages from official PyPI; the demo itself needs no network, account or API key. This is a release candidate, not a stable release.
 
 ```sh
-git clone https://github.com/linqingzi/candle-audit-kit.git
-cd candle-audit-kit
+cd candle-audit-kit-0.1.0rc2
 python3.11 -m venv .venv
 . .venv/bin/activate
 python -m pip install --index-url https://pypi.org/simple .
@@ -36,7 +39,9 @@ Key output fields (the CLI also prints dataset IDs and report paths):
 }
 ```
 
-Open the file printed as `report.html_path`, under `data/demo/reports/`. It is self-contained HTML. **English HTML is new on `main`; the existing 0.1.0rc1 archive predates `--language en`.** Omit the option for the original Chinese view. The JSON evidence retains its original schema and text in either language. The complete CSV, original-response JSON, metadata, source, request and page inputs are in `data/demo/inputs/`; source fixtures are in [examples/synthetic](examples/synthetic). Changed demo inputs are never silently overwritten. Install time depends on your connection and available native wheels.
+Open the file printed as `report.html_path`, under `data/demo/reports/`. It is self-contained HTML. **The 0.1.0rc2 candidate includes `--language en`; the older 0.1.0rc1 archive predates this option.** Omit the option for the original Chinese view. The JSON evidence retains its original schema and text in either language. The complete CSV, original-response JSON, metadata, source, request and page inputs are in `data/demo/inputs/`; source fixtures are in [examples/synthetic](examples/synthetic). Changed demo inputs are never silently overwritten. Install time depends on your connection and available native wheels.
+
+For development, clone the repository instead and run the same setup commands from its root. Candidate archive hashes are listed in the release's `SHA256SUMS.txt`.
 
 ## What you can check
 

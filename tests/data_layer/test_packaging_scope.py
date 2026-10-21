@@ -8,7 +8,7 @@ import tarfile
 from pathlib import Path, PurePosixPath
 
 ROOT = Path(__file__).resolve().parents[2]
-ARCHIVE_ROOT = "candle_audit_kit-0.1.0rc1"
+ARCHIVE_ROOT = "candle_audit_kit-0.1.0rc2"
 ROOT_FILES = {"README.md", "README.zh-TW.md", "pyproject.toml", ".gitignore",
               "CHANGELOG.md", "LICENSE", "LICENSE-STATUS.md", "PROVENANCE.md", "THIRD_PARTY_NOTICES.md",
               "RELEASE_STATUS.md", "requirements-test-lock.txt", "CHECKSUMS.sha256"}
@@ -121,4 +121,4 @@ def test_native_sdist_contains_exact_canonical_project_files(tmp_path: Path) -> 
         metadata = archive.extractfile(files["PKG-INFO"]).read().decode()
         assert "Metadata-Version:" in metadata
         assert "Name: candle-audit-kit\n" in metadata
-        assert "Version: 0.1.0rc1\n" in metadata
+        assert "Version: 0.1.0rc2\n" in metadata

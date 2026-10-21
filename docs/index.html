@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'unsafe-inline'; script-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="description" content="Read a real synthetic candle-quality report without installing anything, then try Candle Audit Kit locally. No file uploads or account required.">
+  <meta property="og:title" content="Candle Audit Kit — start with the report">
+  <meta property="og:description" content="An install-free synthetic preview, followed by a reproducible local demo. Exact values, clear evidence limits, no uploads.">
+  <meta property="og:image" content="https://linqingzi.github.io/candle-audit-kit/images/social-preview.jpg">
+  <meta name="color-scheme" content="dark">
+  <title>Candle Audit Kit — start with the report</title>
+  <style>
+    :root{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#eaf1f7;background:#0d1421;line-height:1.6;--muted:#afbfce;--line:#2b3e50;--mint:#91e7c5}
+    *{box-sizing:border-box}body{margin:0}a{color:var(--mint);text-underline-offset:4px}a:hover{color:#c5ffe8}a:focus-visible,summary:focus-visible{outline:3px solid #efcb82;outline-offset:5px}
+    .wrap{max-width:1180px;margin:auto;padding:0 30px}.skip{position:absolute;left:20px;top:-80px;background:#1c3340;padding:12px}.skip:focus{top:10px;z-index:3}
+    header{border-bottom:1px solid var(--line)}nav{min-height:80px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{font-size:18px;font-weight:750;color:#ecf6fa;text-decoration:none}.nav-links{display:flex;gap:24px;font-size:14px}.tag{display:inline-block;border:1px solid #4c6574;border-radius:100px;padding:4px 11px;font-size:12px;letter-spacing:.4px;color:#c5d7df;white-space:nowrap}
+    .hero{display:grid;grid-template-columns:1.06fr .94fr;gap:52px;padding-top:74px;padding-bottom:64px;align-items:center}.eyebrow{font-size:12px;font-weight:750;letter-spacing:2px;color:var(--mint);margin:0 0 18px}h1{font-size:clamp(36px,4.8vw,60px);line-height:1.08;letter-spacing:-2px;margin:0 0 24px;max-width:650px}.lead{font-size:18px;color:#c2d0dd;max-width:570px;margin:0 0 27px}.actions{display:flex;flex-wrap:wrap;gap:12px}.button{display:inline-flex;align-items:center;justify-content:center;border:1px solid #628f84;border-radius:8px;padding:12px 18px;text-decoration:none;font-weight:700;line-height:1.4}.primary{background:var(--mint);color:#10251f;border-color:var(--mint)}.primary:hover{color:#10251f;background:#bbf7df}.secondary{color:#daeee5;background:#172b30}.micro{font-size:13px;color:var(--muted);margin:18px 0 0}.preview-label{display:flex;justify-content:space-between;gap:15px;align-items:center;font-size:12px;color:#e3c58c;margin-bottom:13px;letter-spacing:1px}.preview-frame{display:block;max-height:500px;overflow:hidden;border:1px solid #3c5366;border-radius:12px;box-shadow:0 24px 64px #0005;background:#10151f}.preview-frame img{display:block;width:100%;height:auto}.preview-note{font-size:12px;color:var(--muted);margin:12px 0 0}
+    .facts{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#121f2d}.fact{padding:22px 26px}.fact+.fact{border-left:1px solid var(--line)}.fact strong{display:block;font-size:25px;line-height:1.25;margin-bottom:6px}.fact span{color:var(--muted);font-size:14px}
+    section{padding:64px 0;border-bottom:1px solid var(--line)}h2{font-size:30px;line-height:1.2;letter-spacing:-.8px;margin:0 0 20px}h3{font-size:17px;margin:0 0 8px}.section-intro{color:var(--muted);max-width:800px}.explain{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:30px}.explain p{color:var(--muted);font-size:15px;margin:0}.step{font-size:12px;letter-spacing:1.4px;color:var(--mint);font-weight:750;margin:0 0 15px}.local{display:grid;grid-template-columns:.9fr 1.1fr;gap:45px;align-items:start}.local p{color:var(--muted)}.local .button{margin:10px 0}.version{font-size:13px;color:#e5c891}.code{padding:22px;background:#08101a;border:1px solid #334759;border-radius:10px;overflow:auto;font-size:13px;line-height:1.8;color:#c9f0e1;max-width:100%;margin:0}code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}p code,li code{padding:2px 5px;background:#1d2b3a;border-radius:4px;font-size:.88em}.expected{font-size:14px;color:#b6c8d7;margin-top:16px}.limit{padding:19px 22px;border-left:3px solid #c2a76e;background:#17202a;border-radius:0 8px 8px 0;font-size:14px;color:#c8d2dc;margin-top:30px}.links{display:flex;gap:24px;flex-wrap:wrap;font-size:14px}footer{padding:30px 0 40px;color:var(--muted);font-size:13px}footer p{max-width:950px}
+    @media(max-width:820px){.hero{grid-template-columns:1fr;gap:35px;padding-top:45px}.preview-frame{max-height:400px}.local{grid-template-columns:1fr;gap:25px}.explain{grid-template-columns:1fr;gap:25px}h1{max-width:620px}.nav-links{gap:15px}.facts{grid-template-columns:1fr}.fact+.fact{border-left:0;border-top:1px solid var(--line)}section{padding:45px 0}}
+    @media(max-width:480px){.wrap{padding:0 20px}nav{min-height:72px;gap:10px}.brand{font-size:16px}.nav-links{font-size:12px;gap:12px}.hero{padding-top:35px;padding-bottom:40px}h1{letter-spacing:-1.2px}.lead{font-size:17px}.actions{flex-direction:column}.preview-frame{max-height:340px}.preview-label{letter-spacing:0;font-size:11px}.code{padding:15px;font-size:12px}.fact{padding:18px 22px}}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header><nav class="wrap" aria-label="Main navigation">
+    <a class="brand" href="./">Candle Audit Kit</a>
+    <div class="nav-links"><a href="#try-locally">Run locally</a><a href="https://github.com/linqingzi/candle-audit-kit">GitHub</a></div>
+  </nav></header>
+  <main id="main" class="wrap">
+    <div class="hero">
+      <div>
+        <p class="eyebrow">OFFLINE OHLCV DATA CHECKS</p>
+        <h1>Start with a real sample report.</h1>
+        <p class="lead">See eight invented candles, their exact values, and the evidence that remains unknown. Read the result before installing anything.</p>
+        <div class="actions">
+          <a class="button primary" href="examples/synthetic-report.en.html">Read English report <span aria-hidden="true">&nbsp;↗</span></a>
+          <a class="button secondary" href="examples/synthetic-report.html" lang="zh-Hant">閱讀中文報告 <span aria-hidden="true">&nbsp;↗</span></a>
+        </div>
+        <p class="micro">No install. No sign-in. A fixed synthetic preview.</p>
+      </div>
+      <div>
+        <div class="preview-label"><span>ACTUAL GENERATED REPORT</span><span class="tag">Synthetic data</span></div>
+        <a class="preview-frame" href="examples/synthetic-report.en.html" aria-label="Open the actual English synthetic report">
+          <img src="images/synthetic-report.en.jpg" width="931" height="1178" alt="Actual English report showing synthetic candles and UNVERIFIED or UNKNOWN evidence states.">
+        </a>
+        <p class="preview-note">Saved output from the real offline demo. <a href="https://github.com/linqingzi/candle-audit-kit/blob/main/docs/images/PROVENANCE.md">Capture provenance</a></p>
+      </div>
+    </div>
+    <div class="facts" aria-label="Synthetic example facts">
+      <div class="fact"><strong>8 hourly candles</strong><span>Invented OHLCV inputs, never live market data</span></div>
+      <div class="fact"><strong>2 four-hour bars</strong><span>Complete UTC buckets from the local demo</span></div>
+      <div class="fact"><strong>No file uploads</strong><span>This page only displays the saved example</span></div>
+    </div>
+    <section aria-labelledby="what-heading">
+      <p class="step">01 / UNDERSTAND THE RESULT</p>
+      <h2 id="what-heading">What to look for in the report</h2>
+      <div class="explain">
+        <div><h3>Inspect the exact input</h3><p>Click a candle in the report to see its original decimal text, timestamps and quantity units. The chart uses those selected rows.</p></div>
+        <div><h3>Read each evidence state</h3><p>A consistency check can pass while source accuracy stays <code>UNVERIFIED</code>. Missing publication evidence stays <code>UNKNOWN</code>.</p></div>
+        <div><h3>Run your own checks locally</h3><p>The preview is a saved demonstration. Install the tool on your machine to run a new synthetic demo or check your own supported candle files.</p></div>
+      </div>
+      <div class="limit">The preview has no upload form and does not audit visitor files. All displayed prices and rules are synthetic. Matching supplied files does not certify market provenance or profitability.</div>
+    </section>
+    <section id="try-locally" aria-labelledby="local-heading">
+      <div class="local">
+        <div>
+          <p class="step">02 / RUN THE CHECKS ON YOUR MACHINE</p>
+          <h2 id="local-heading">Try the local demo.</h2>
+          <p>Download the candidate source ZIP, extract it, then run the commands alongside. A Git client is not required.</p>
+          <a class="button primary" href="https://github.com/linqingzi/candle-audit-kit/releases/download/0.1.0rc2/candle-audit-kit-0.1.0rc2.zip">Download 0.1.0rc2 ZIP</a>
+          <p class="version">Release candidate · not a stable release</p>
+          <p>Requires CPython 3.11–3.14 on macOS or Linux. First installation downloads dependencies from official PyPI; the synthetic demo runs offline.</p>
+          <p><a href="https://github.com/linqingzi/candle-audit-kit/blob/main/README.zh-TW.md#快速上手" lang="zh-Hant">中文本機起步說明</a> · <a href="https://github.com/linqingzi/candle-audit-kit/releases/tag/0.1.0rc2">Release notes and checksums</a></p>
+        </div>
+        <div>
+          <pre class="code"><code>cd candle-audit-kit-0.1.0rc2
+python3.11 -m venv .venv
+. .venv/bin/activate
+python -m pip install --index-url https://pypi.org/simple .
+candle-audit demo --root data/demo --language en</code></pre>
+          <p class="expected">Expected: <code>SYNTHETIC_DEMO_COMPLETE</code>, 8 rows, 2 aggregate rows, <code>network_used: false</code>. Open the new HTML file printed as <code>report.html_path</code>.</p>
+          <p class="micro">Chinese remains the default: omit <code>--language en</code>. Use your installed supported Python executable if it has a different name.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="wrap">
+    <div class="links"><a href="https://github.com/linqingzi/candle-audit-kit">Source and README</a><a href="https://github.com/linqingzi/candle-audit-kit/blob/main/docs/limitations.md">Limits and verified scope</a><a href="https://github.com/linqingzi/candle-audit-kit/blob/main/docs/contributing.md">Feedback and contributions</a><a href="https://github.com/linqingzi/candle-audit-kit/blob/main/LICENSE">MIT license</a></div>
+    <p>A small, prerelease tool for checking supported OKX trade-candle inputs before analysis. This static preview is separate from local execution. No accounts or credentials are used by the synthetic example.</p>
+  </footer>
+</body>
+</html>

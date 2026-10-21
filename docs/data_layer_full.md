@@ -64,8 +64,12 @@ selection and distinguish data gaps from unknown market truth. HTML has no remot
 requests. Deployment, performance at market scale, public adoption and independent market
 certification are not claimed. See limitations.md and the release gate.
 
-On current `main`, `demo` and `report` accept `--language en` for an English HTML view or
+Starting with 0.1.0rc2, `demo` and `report` accept `--language en` for an English HTML view or
 `--language zh-CN` for the original default Chinese view. Only project-owned interface labels
 are translated: exact candle values, user dataset names, statuses, JSON evidence and validation
 rules are retained. The JSON schema name remains unchanged for compatibility. This is new
 presentation support after the existing 0.1.0rc1 release; that release's archive is unchanged.
+
+The public static preview links to saved synthetic HTML outputs only. It is separate from
+these local commands and accepts no visitor files. Download the matching candidate archive
+from the release linked in the README to reproduce a new local run.

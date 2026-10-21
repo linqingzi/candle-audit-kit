@@ -3,11 +3,11 @@
 These are real browser captures of generated synthetic reports, with no real market data,
 trading accounts, AI-generated report pixels or invented application interface.
 
-## English capture: new on main
+## English capture: included in 0.1.0rc2
 
 The original tool produced Chinese reports only. Optional English HTML display was added on
-main after 0.1.0rc1; this screenshot demonstrates that new implementation, not a feature of
-the unchanged 0.1.0rc1 archive. Run the current source with:
+main after 0.1.0rc1 and is included in 0.1.0rc2. This screenshot demonstrates that implementation,
+not a feature of the unchanged 0.1.0rc1 archive. Run the current candidate with:
 
 ```sh
 candle-audit demo --root data/demo --language en
