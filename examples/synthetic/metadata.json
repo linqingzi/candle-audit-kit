@@ -1,0 +1,23 @@
+{
+  "schema": "candle-audit-data-version-v2",
+  "name": "synthetic-demo",
+  "version": "v1",
+  "source": "synthetic-engineering",
+  "provenance": "synthetic-engineering/test-only",
+  "market": "BTC-USDT-SWAP",
+  "currency": "USDT",
+  "timeframe": "1h",
+  "timezone": "UTC",
+  "kind": "synthetic",
+  "content_sha256": "7ec09baaf5efeb583994e297dd46a0ff92233ed48a9c703180e5d82b1eb0e72f",
+  "volume": {
+    "base_asset": "BTC",
+    "quote_asset": "USDT",
+    "columns": [
+      {
+        "column": "qty",
+        "unit": "base"
+      }
+    ]
+  }
+}

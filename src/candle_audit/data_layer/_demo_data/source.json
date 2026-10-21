@@ -1,0 +1,11 @@
+{
+  "venue": "OKX",
+  "instId": "BTC-USDT-SWAP",
+  "instType": "SWAP",
+  "base_asset": "BTC",
+  "quote_asset": "USDT",
+  "bar": "1H",
+  "endpoint": "/api/v5/market/history-candles",
+  "source_type": "trade",
+  "acquisition": "SYNTHETIC"
+}

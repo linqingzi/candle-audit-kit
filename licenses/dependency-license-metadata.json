@@ -1,0 +1,74 @@
+[
+  {
+    "package": "ccxt",
+    "version": "4.5.64",
+    "metadata_license": "MIT",
+    "source": "https://pypi.org/project/ccxt/4.5.64/",
+    "license_files": [
+      "licenses/third-party/ccxt/LICENSE.txt"
+    ]
+  },
+  {
+    "package": "duckdb",
+    "version": "1.5.6",
+    "metadata_license": "MIT License",
+    "source": "https://pypi.org/project/duckdb/1.5.6/",
+    "license_files": [
+      "licenses/third-party/duckdb/LICENSE"
+    ]
+  },
+  {
+    "package": "pyarrow",
+    "version": "25.0.0",
+    "metadata_license": "Apache-2.0",
+    "source": "https://pypi.org/project/pyarrow/25.0.0/",
+    "license_files": [
+      "licenses/third-party/pyarrow/LICENSE.txt",
+      "licenses/third-party/pyarrow/NOTICE.txt"
+    ]
+  },
+  {
+    "package": "pandas",
+    "version": "3.0.3",
+    "metadata_license": "BSD License",
+    "source": "https://pypi.org/project/pandas/3.0.3/",
+    "license_files": [
+      "licenses/third-party/pandas/LICENSE"
+    ]
+  },
+  {
+    "package": "numpy",
+    "version": "2.4.6",
+    "metadata_license": "BSD-3-Clause AND 0BSD AND MIT AND Zlib AND CC0-1.0",
+    "source": "https://pypi.org/project/numpy/2.4.6/",
+    "license_files": [
+      "licenses/third-party/numpy/LICENSE.txt",
+      "licenses/third-party/numpy/e7b67030-LICENSE.txt",
+      "licenses/third-party/numpy/LICENSE",
+      "licenses/third-party/numpy/dragon4_LICENSE.txt",
+      "licenses/third-party/numpy/LICENSE.md",
+      "licenses/third-party/numpy/ec890146-LICENSE",
+      "licenses/third-party/numpy/51fd74ba-LICENSE.md",
+      "licenses/third-party/numpy/ca7c4d53-LICENSE.txt",
+      "licenses/third-party/numpy/f62aae2c-LICENSE",
+      "licenses/third-party/numpy/91b89395-LICENSE.md",
+      "licenses/third-party/numpy/a14f45e4-LICENSE.md",
+      "licenses/third-party/numpy/00d7d4f4-LICENSE.md",
+      "licenses/third-party/numpy/6b0abf2d-LICENSE.md",
+      "licenses/third-party/numpy/2e4c2ea9-LICENSE.md",
+      "licenses/third-party/numpy/eef0fad7-LICENSE.md",
+      "licenses/third-party/numpy/da1edaaf-LICENSE.md"
+    ]
+  },
+  {
+    "package": "cryptography",
+    "version": "50.0.2",
+    "metadata_license": "Apache-2.0 OR BSD-3-Clause",
+    "source": "https://pypi.org/project/cryptography/50.0.2/",
+    "license_files": [
+      "licenses/third-party/cryptography/LICENSE",
+      "licenses/third-party/cryptography/LICENSE.APACHE",
+      "licenses/third-party/cryptography/LICENSE.BSD"
+    ]
+  }
+]
