@@ -1,8 +1,9 @@
-# Local release status
+# Release status
 
 Version: 0.1.0rc1. Project license: MIT, adopted after maintainer source/permission confirmation.
 This is the first public pre-release. Repository/release metadata on GitHub record its public
-publication. No grant application has been submitted. See docs/validation.md for evidence scope.
+publication. Personal grant applications are separate from project licensing and validation.
+See docs/validation.md for evidence scope.
 
 The original snapshot, backups, environments and local acceptance evidence remain separate.
 The handoff includes exact test counts, archive hashes and the test/build logs. Long functional

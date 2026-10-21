@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none';
+style-src 'unsafe-inline'; script-src 'sha256-XmyphHBPFYvdbocu2vlHG1//Q0Wvu/pFNnWjRMXsKA4=';
+base-uri 'none'; form-action 'none'">
+<title>Candle Audit Kit 数据质量与K线</title><style>
+body{margin:0;background:#0e1420;color:#e6ecf5;font:15px system-ui,sans-serif}
+main{max-width:1180px;margin:40px auto;padding:0 24px}
+h1{font-size:32px;margin-bottom:10px} h2{font-size:21px}
+p{line-height:1.65;color:#abb7ca}
+.badge{display:inline-block;padding:8px 12px;background:#47321b;
+color:#ffe1a1;border-radius:6px} code{word-break:break-all}
+section,details{background:#172132;border:1px solid #2b3a50;
+border-radius:10px;padding:18px;margin:20px 0} svg{width:100%;height:auto}
+select{padding:9px;background:#172132;color:#e6ecf5;
+border:1px solid #657791;border-radius:4px}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{padding:9px;text-align:left;border-bottom:1px solid #324056}
+pre{white-space:pre-wrap;word-break:break-word;line-height:1.5}
+.scroll{overflow:auto} [hidden]{display:none}
+g:focus{outline:2px solid #eee} summary{cursor:pointer}
+</style></head><body><main><p>Candle Audit Kit · 数据层 M01</p>
+<h1>synthetic-demo · 质量与K线</h1>
+<div class="badge">工程合成测试数据</div>
+<p>版本 <code>e8f21009368c06e8a5f65f33b5ba5ee5dd27db5b38031a073ccee4acc235fd89</code><br>
+准入 VERIFY · 8 棒 · 1 商品/周期组合</p>
+<p>本页使用所选输入，不插值、不补棒；原始精确文本可逐棒查看。</p>
+<label for="stream">商品与周期 </label>
+<select id="stream"><option value="0">BTC-USDT-SWAP / 1h</option></select>
+<section class="panel" data-panel="0" ><h2>BTC-USDT-SWAP / 1h K线</h2><svg viewBox="0 0 1100 310" role="img" aria-label="所选输入K线"><text x="20" y="25" fill="#abb7ca">最高 102.00 · 最低 99.00</text><line x1="55" x2="1050" y1="265" y2="265" stroke="#324056"/><g tabindex="0" role="button" aria-label="查看精确原值" data-detail="{
+  &quot;venue&quot;: &quot;OKX&quot;,
+  &quot;instrument&quot;: &quot;BTC-USDT-SWAP&quot;,
+  &quot;market_kind&quot;: &quot;SWAP&quot;,
+  &quot;price_kind&quot;: &quot;trade&quot;,
+  &quot;base_asset&quot;: &quot;BTC&quot;,
+  &quot;quote_asset&quot;: &quot;USDT&quot;,
+  &quot;timeframe&quot;: &quot;1h&quot;,
+  &quot;open_time_ns&quot;: 1767225600000000000,
+  &quot;close_time_ns&quot;: 1767229200000000000,
+  &quot;event_time_ns&quot;: null,
+  &quot;acquired_ns&quot;: 1792592430181018000,
+  &quot;published_ns&quot;: null,
+  &quot;open&quot;: &quot;100.00&quot;,
+  &quot;high&quot;: &quot;102.00&quot;,
+  &quot;low&quot;: &quot;99.00&quot;,
+  &quot;close&quot;: &quot;101.00&quot;,
+  &quot;base_qty&quot;: &quot;1.00&quot;,
+  &quot;quote_qty&quot;: &quot;101.00&quot;,
+  &quot;contracts_qty&quot;: &quot;10&quot;,
+  &quot;state&quot;: &quot;OBSERVED&quot;,
+  &quot;rule_id&quot;: &quot;7ad99ca6839c02509c268d82e30ee293da9642bb9b4ea0c15a879ab1de34a8cd&quot;
+}"><title>{
+  &quot;venue&quot;: &quot;OKX&quot;,
+  &quot;instrument&quot;: &quot;BTC-USDT-SWAP&quot;,
+  &quot;market_kind&quot;: &quot;SWAP&quot;,
+  &quot;price_kind&quot;: &quot;trade&quot;,
+  &quot;base_asset&quot;: &quot;BTC&quot;,
+  &quot;quote_asset&quot;: &quot;USDT&quot;,
+  &quot;timeframe&quot;: &quot;1h&quot;,
+  &quot;open_time_ns&quot;: 1767225600000000000,
+  &quot;close_time_ns&quot;: 1767229200000000000,
+  &quot;event_time_ns&quot;: null,
+  &quot;acquired_ns&quot;: 1792592430181018000,
+  &quot;published_ns&quot;: null,
+  &quot;open&quot;: &quot;100.00&quot;,
+  &quot;high&quot;: &quot;102.00&quot;,
+  &quot;low&quot;: &quot;99.00&quot;,
+  &quot;close&quot;: &quot;101.00&quot;,
+  &quot;base_qty&quot;: &quot;1.00&quot;,
+  &quot;quote_qty&quot;: &quot;101.00&quot;,
+  &quot;contracts_qty&quot;: &quot;10&quot;,
+  &quot;state&quot;: &quot;OBSERVED&quot;,
+  &quot;rule_id&quot;: &quot;7ad99ca6839c02509c268d82e30ee293da9642bb9b4ea0c15a879ab1de34a8cd&quot;
+}</title><line x1="55" x2="55" y1="45" y2="255" stroke="#45bf9a"/><rect x="48" y="115" width="14" height="70" fill="#45bf9a"/></g><g tabindex="0" role="button" aria-label="查看精确原值" data-detail="{
+  &quot;venue&quot;: &quot;OKX&quot;,
+  &quot;instrument&quot;: &quot;BTC-USDT-SWAP&quot;,
+  &quot;market_kind&quot;: &quot;SWAP&quot;,
+  &quot;price_kind&quot;: &quot;trade&quot;,
+  &quot;base_asset&quot;: &quot;BTC&quot;,
+  &quot;quote_asset&quot;: &quot;USDT&quot;,
+  &quot;timeframe&quot;: &quot;1h&quot;,
+  &quot;open_time_ns&quot;: 1767229200000000000,
+  &quot;close_time_ns&quot;: 1767232800000000000,
+  &quot;event_time_ns&quot;: null,
+  &quot;acquired_ns&quot;: 1792592430181018000,
+  &quot;published_ns&quot;: null,
+  &quot;open&quot;: &quot;100.00&quot;,
+  &quot;high&quot;: &quot;102.00&quot;,
+  &quot;low&quot;: &quot;99.00&quot;,
+  &quot;close&quot;: &quot;101.00&quot;,
+  &quot;base_qty&quot;: &quot;1.00&quot;,
+  &quot;quote_qty&quot;: &quot;101.00&quot;,
+  &quot;contracts_qty&quot;: &quot;10&quot;,
+  &quot;state&quot;: &quot;OBSERVED&quot;,
+  &quot;rule_id&quot;: &quot;7ad99ca6839c02509c268d82e30ee293da9642bb9b4ea0c15a879ab1de34a8cd&quot;
+}"><title>{
+  &quot;venue&quot;: &quot;OKX&quot;,
+  &quot;instrument&quot;: &quot;BTC-USDT-SWAP&quot;,
+  &quot;market_kind&quot;: &quot;SWAP&quot;,
+  &quot;price_kind&quot;: &quot;trade&quot;,
+  &quot;base_asset&quot;: &quot;BTC&quot;,
+  &quot;quote_asset&quot;: &quot;USDT&quot;,
+  &quot;timeframe&quot;: &quot;1h&quot;,
+  &quot;open_time_ns&quot;: 1767229200000000000,
+  &quot;close_time_ns&quot;: 1767232800000000000,
+  &quot;event_time_ns&quot;: null,
+  &quot;acquired_ns&quot;: 1792592430181018000,
+  &quot;published_ns&quot;: null,
+  &quot;open&quot;: &quot;100.00&quot;,
+  &quot;high&quot;: &quot;102.00&quot;,
+  &quot;low&quot;: &quot;99.00&quot;,
+  &quot;close&quot;: &quot;101.00&quot;,
+  &quot;base_qty&quot;: &quot;1.00&quot;,
+  &quot;quote_qty&quot;: &quot;101.00&quot;,
+  &quot;contracts_qty&quot;: &quot;10&quot;,
+  &quot;state&quot;: &quot;OBSERVED&quot;,
+  &quot;rule_id&quot;: &quot;7ad99ca6839c02509c268d82e30ee293da9642bb9b4ea0c15a879ab1de34a8cd&quot;
+}</title><line x1="178" x2="178" y1="45" y2="255" stroke="#45bf9a"/><rect x="171" y="115" width="14" height="70" fill="#45bf9a"/></g><g tabindex="0" role="button" aria-label="查看精确原值" data-detail="{
+  &quot;venue&quot;: &quot;OKX&quot;,
+  &quot;instrument&quot;: &quot;BTC-USDT-SWAP&quot;,
+  &quot;market_kind&quot;: &quot;SWAP&quot;,
+  &quot;price_kind&quot;: &quot;trade&quot;,
+  &quot;base_asset&quot;: &quot;BTC&quot;,
+  &quot;quote_asset&quot;: &quot;USDT&quot;,
+  &quot;timeframe&quot;: &quot;1h&quot;,
+  &quot;open_time_ns&quot;: 1767232800000000000,
+  &quot;close_time_ns&quot;: 1767236400000000000,
+  &quot;event_time_ns&quot;: null,
+  &quot;acquired_ns&quot;: 1792592430181018000,
+  &quot;published_ns&quot;: null,
+  &quot;open&quot;: &quot;100.00&quot;,
+  &quot;high&quot;: &quot;102.00&quot;,
+  &quot;low&quot;: &quot;99.00&quot;,
+  &quot;close&quot;: &quot;101.00&quot;,
+  &quot;base_qty&quot;: &quot;1.00&quot;,
+  &quot;quote_qty&quot;: &quot;101.00&quot;,
+  &quot;contracts_qty&quot;: &quot;10&quot;,
+  &quot;state&quot;: &quot;OBSERVED&quot;,
+  &quot;rule_id&quot;: &quot;7ad99ca6839c02509c268d82e30ee293da9642bb9b4ea0c15a879ab1de34a8cd&quot;
+}"><title>{
+  &quot;venue&quot;: &quot;OKX&quot;,
+  &quot;instrument&quot;: &quot;BTC-USDT-SWAP&quot;,
+  &quot;market_kind&quot;: &quot;SWAP&quot;,
+  &quot;price_kind&quot;: &quot;trade&quot;,
+  &quot;base_asset&quot;: &quot;BTC&quot;,
+  &quot;quote_asset&quot;: &quot;USDT&quot;,
+  &quot;timeframe&quot;: &quot;1h&quot;,
+  &quot;open_time_ns&quot;: 1767232800000000000,
+  &quot;close_time_ns&quot;: 1767236400000000000,
+  &quot;event_time_ns&quot;: null,
+  &quot;acquired_ns&quot;: 1792592430181018000,
+  &quot;published_ns&quot;: null,
+  &quot;open&quot;: &quot;100.00&quot;,
+  &quot;high&quot;: &quot;102.00&quot;,
+  &quot;low&quot;: &quot;99.00&quot;,
+  &quot;close&quot;: &quot;101.00&quot;,
+  &quot;base_qty&quot;: &quot;1.00&quot;,
+  &quot;quote_qty&quot;: &quot;101.00&quot;,
+  &quot;contracts_qty&quot;: &quot;10&quot;,
+  &quot;state&quot;: &quot;OBSERVED&quot;,
+  &quot;rule_id&quot;: &quot;7ad99ca6839c02509c268d82e30ee293da9642bb9b4ea0c15a879ab1de34a8cd&quot;
+}</title><line x1="302" x2="302" y1="45" y2="255" stroke="#45bf9a"/><rect x="295" y="115" width="14" height="70" fill="#45bf9a"/></g><g tabindex="0" role="button" aria-label="查看精确原值" data-detail="{
+  &quot;venue&quot;: &quot;OKX&quot;,
+  &quot;instrument&quot;: &quot;BTC-USDT-SWAP&quot;,
+  &quot;market_kind&quot;: &quot;SWAP&quot;,
+  &quot;price_kind&quot;: &quot;trade&quot;,
+  &quot;base_asset&quot;: &quot;BTC&quot;,
+  &quot;quote_asset&quot;: &quot;USDT&quot;,
+  &quot;timeframe&quot;: &quot;1h&quot;,
+  &quot;open_time_ns&quot;: 1767236400000000000,
+  &quot;close_time_ns&quot;: 1767240000000000000,
+  &quot;event_time_ns&quot;: null,
+  &quot;acquired_ns&quot;: 1792592430181018000,
+  &quot;published_ns&quot;: null,
+  &quot;open&quot;: &quot;100.00&quot;,
+  &quot;high&quot;: &quot;102.00&quot;,
+  &quot;low&quot;: &quot;99.00&quot;,
+  &quot;close&quot;: &quot;101.00&quot;,
+  &quot;base_qty&quot;: &quot;1.00&quot;,
+  &quot;quote_qty&quot;: &quot;101.00&quot;,
+  &quot;contracts_qty&quot;: &quot;10&quot;,
+  &quot;state&quot;: &quot;OBSERVED&quot;,
+  &quot;rule_id&quot;: &quot;7ad99ca6839c02509c268d82e30ee293da9642bb9b4ea0c15a879ab1de34a8cd&quot;
+}"><title>{
+  &quot;venue&quot;: &quot;OKX&quot;,
+  &quot;instrument&quot;: &quot;BTC-USDT-SWAP&quot;,
+  &quot;market_kind&quot;: &quot;SWAP&quot;,
+  &quot;price_kind&quot;: &quot;trade&quot;,
+  &quot;base_asset&quot;: &quot;BTC&quot;,
+  &quot;quote_asset&quot;: &quot;USDT&quot;,
+  &quot;timeframe&quot;: &quot;1h&quot;,
+  &quot;open_time_ns&quot;: 1767236400000000000,
+  &quot;close_time_ns&quot;: 1767240000000000000,
+  &quot;event_time_ns&quot;: null,
+  &quot;acquired_ns&quot;: 1792592430181018000,
+  &quot;published_ns&quot;: null,
+  &quot;open&quot;: &quot;100.00&quot;,
+  &quot;high&quot;: &quot;102.00&quot;,
+  &quot;low&quot;: &quot;99.00&quot;,
+  &quot;close&quot;: &quot;101.00&quot;,
+  &quot;base_qty&quot;: &quot;1.00&quot;,
+  &quot;quote_qty&quot;: &quot;101.00&quot;,
+  &quot;contracts_qty&quot;: &quot;10&quot;,
+  &quot;state&quot;: &quot;OBSERVED&quot;,
+  &quot;rule_id&quot;: &quot;7ad99ca6839c02509c268d82e30ee293da9642bb9b4ea0c15a879ab1de34a8cd&quot;
+}</title><line x1="426" x2="426" y1="45" y2="255" stroke="#45bf9a"/><rect x="419" y="115" width="14" height="70" fill="#45bf9a"/></g><g tabindex="0" role="button" aria-label="查看精确原值" data-detail="{
+  &quot;venue&quot;: &quot;OKX&quot;,
+  &quot;instrument&quot;: &quot;BTC-USDT-SWAP&quot;,
+  &quot;market_kind&quot;: &quot;SWAP&quot;,
+  &quot;price_kind&quot;: &quot;trade&quot;,
+  &quot;base_asset&quot;: &quot;BTC&quot;,
+  &quot;quote_asset&quot;: &quot;USDT&quot;,
+  &quot;timeframe&quot;: &quot;1h&quot;,
+  &quot;open_time_ns&quot;: 1767240000000000000,
+  &quot;close_time_ns&quot;: 1767243600000000000,
+  &quot;event_time_ns&quot;: null,
+  &quot;acquired_ns&quot;: 1792592430181018000,
+  &quot;published_ns&quot;: null,
+  &quot;open&quot;: &quot;100.00&quot;,
+  &quot;high&quot;: &quot;102.00&quot;,
+  &quot;low&quot;: &quot;99.00&quot;,
+  &quot;close&quot;: &quot;101.00&quot;,
+  &quot;base_qty&quot;: &quot;1.00&quot;,
+  &quot;quote_qty&quot;: &quot;101.00&quot;,
+  &quot;contracts_qty&quot;: &quot;10&quot;,
+  &quot;state&quot;: &quot;OBSERVED&quot;,
+  &quot;rule_id&quot;: &quot;7ad99ca6839c02509c268d82e30ee293da9642bb9b4ea0c15a879ab1de34a8cd&quot;
+}"><title>{
+  &quot;venue&quot;: &quot;OKX&quot;,
+  &quot;instrument&quot;: &quot;BTC-USDT-SWAP&quot;,
+  &quot;market_kind&quot;: &quot;SWAP&quot;,
+  &quot;price_kind&quot;: &quot;trade&quot;,
+  &quot;base_asset&quot;: &quot;BTC&quot;,
+  &quot;quote_asset&quot;: &quot;USDT&quot;,
+  &quot;timeframe&quot;: &quot;1h&quot;,
+  &quot;open_time_ns&quot;: 1767240000000000000,
+  &quot;close_time_ns&quot;: 1767243600000000000,
+  &quot;event_time_ns&quot;: null,
+  &quot;acquired_ns&quot;: 1792592430181018000,
+  &quot;published_ns&quot;: null,
+  &quot;open&quot;: &quot;100.00&quot;,
+  &quot;high&quot;: &quot;102.00&quot;,
+  &quot;low&quot;: &quot;99.00&quot;,
+  &quot;close&quot;: &quot;101.00&quot;,
+  &quot;base_qty&quot;: &quot;1.00&quot;,
+  &quot;quote_qty&quot;: &quot;101.00&quot;,
+  &quot;contracts_qty&quot;: &quot;10&quot;,
+  &quot;state&quot;: &quot;OBSERVED&quot;,
+  &quot;rule_id&quot;: &quot;7ad99ca6839c02509c268d82e30ee293da9642bb9b4ea0c15a879ab1de34a8cd&quot;
+}</title><line x1="550" x2="550" y1="45" y2="255" stroke="#45bf9a"/><rect x="543" y="115" width="14" height="70" fill="#45bf9a"/></g><g tabindex="0" role="button" aria-label="查看精确原值" data-detail="{
+  &quot;venue&quot;: &quot;OKX&quot;,
+  &quot;instrument&quot;: &quot;BTC-USDT-SWAP&quot;,
+  &quot;market_kind&quot;: &quot;SWAP&quot;,
+  &quot;price_kind&quot;: &quot;trade&quot;,
+  &quot;base_asset&quot;: &quot;BTC&quot;,
+  &quot;quote_asset&quot;: &quot;USDT&quot;,
+  &quot;timeframe&quot;: &quot;1h&quot;,
+  &quot;open_time_ns&quot;: 1767243600000000000,
+  &quot;close_time_ns&quot;: 1767247200000000000,
+  &quot;event_time_ns&quot;: null,
+  &quot;acquired_ns&quot;: 1792592430181018000,
+  &quot;published_ns&quot;: null,
+  &quot;open&quot;: &quot;100.00&quot;,
+  &quot;high&quot;: &quot;102.00&quot;,
+  &quot;low&quot;: &quot;99.00&quot;,
+  &quot;close&quot;: &quot;101.00&quot;,
+  &quot;base_qty&quot;: &quot;1.00&quot;,
+  &quot;quote_qty&quot;: &quot;101.00&quot;,
+  &quot;contracts_qty&quot;: &quot;10&quot;,
+  &quot;state&quot;: &quot;OBSERVED&quot;,
+  &quot;rule_id&quot;: &quot;7ad99ca6839c02509c268d82e30ee293da9642bb9b4ea0c15a879ab1de34a8cd&quot;
+}"><title>{
+  &quot;venue&quot;: &quot;OKX&quot;,
+  &quot;instrument&quot;: &quot;BTC-USDT-SWAP&quot;,
+  &quot;market_kind&quot;: &quot;SWAP&quot;,
+  &quot;price_kind&quot;: &quot;trade&quot;,
+  &quot;base_asset&quot;: &quot;BTC&quot;,
+  &quot;quote_asset&quot;: &quot;USDT&quot;,
+  &quot;timeframe&quot;: &quot;1h&quot;,
+  &quot;open_time_ns&quot;: 1767243600000000000,
+  &quot;close_time_ns&quot;: 1767247200000000000,
+  &quot;event_time_ns&quot;: null,
+  &quot;acquired_ns&quot;: 1792592430181018000,
+  &quot;published_ns&quot;: null,
+  &quot;open&quot;: &quot;100.00&quot;,
+  &quot;high&quot;: &quot;102.00&quot;,
+  &quot;low&quot;: &quot;99.00&quot;,
+  &quot;close&quot;: &quot;101.00&quot;,
+  &quot;base_qty&quot;: &quot;1.00&quot;,
+  &quot;quote_qty&quot;: &quot;101.00&quot;,
+  &quot;contracts_qty&quot;: &quot;10&quot;,
+  &quot;state&quot;: &quot;OBSERVED&quot;,
+  &quot;rule_id&quot;: &quot;7ad99ca6839c02509c268d82e30ee293da9642bb9b4ea0c15a879ab1de34a8cd&quot;
+}</title><line x1="673" x2="673" y1="45" y2="255" stroke="#45bf9a"/><rect x="666" y="115" width="14" height="70" fill="#45bf9a"/></g><g tabindex="0" role="button" aria-label="查看精确原值" data-detail="{
+  &quot;venue&quot;: &quot;OKX&quot;,
+  &quot;instrument&quot;: &quot;BTC-USDT-SWAP&quot;,
+  &quot;market_kind&quot;: &quot;SWAP&quot;,
+  &quot;price_kind&quot;: &quot;trade&quot;,
+  &quot;base_asset&quot;: &quot;BTC&quot;,
+  &quot;quote_asset&quot;: &quot;USDT&quot;,
+  &quot;timeframe&quot;: &quot;1h&quot;,
+  &quot;open_time_ns&quot;: 1767247200000000000,
+  &quot;close_time_ns&quot;: 1767250800000000000,
+  &quot;event_time_ns&quot;: null,
+  &quot;acquired_ns&quot;: 1792592430181018000,
+  &quot;published_ns&quot;: null,
+  &quot;open&quot;: &quot;100.00&quot;,
+  &quot;high&quot;: &quot;102.00&quot;,
+  &quot;low&quot;: &quot;99.00&quot;,
+  &quot;close&quot;: &quot;101.00&quot;,
+  &quot;base_qty&quot;: &quot;1.00&quot;,
+  &quot;quote_qty&quot;: &quot;101.00&quot;,
+  &quot;contracts_qty&quot;: &quot;10&quot;,
+  &quot;state&quot;: &quot;OBSERVED&quot;,
+  &quot;rule_id&quot;: &quot;7ad99ca6839c02509c268d82e30ee293da9642bb9b4ea0c15a879ab1de34a8cd&quot;
+}"><title>{
+  &quot;venue&quot;: &quot;OKX&quot;,
+  &quot;instrument&quot;: &quot;BTC-USDT-SWAP&quot;,
+  &quot;market_kind&quot;: &quot;SWAP&quot;,
+  &quot;price_kind&quot;: &quot;trade&quot;,
+  &quot;base_asset&quot;: &quot;BTC&quot;,
+  &quot;quote_asset&quot;: &quot;USDT&quot;,
+  &quot;timeframe&quot;: &quot;1h&quot;,
+  &quot;open_time_ns&quot;: 1767247200000000000,
+  &quot;close_time_ns&quot;: 1767250800000000000,
+  &quot;event_time_ns&quot;: null,
+  &quot;acquired_ns&quot;: 1792592430181018000,
+  &quot;published_ns&quot;: null,
+  &quot;open&quot;: &quot;100.00&quot;,
+  &quot;high&quot;: &quot;102.00&quot;,
+  &quot;low&quot;: &quot;99.00&quot;,
+  &quot;close&quot;: &quot;101.00&quot;,
+  &quot;base_qty&quot;: &quot;1.00&quot;,
+  &quot;quote_qty&quot;: &quot;101.00&quot;,
+  &quot;contracts_qty&quot;: &quot;10&quot;,
+  &quot;state&quot;: &quot;OBSERVED&quot;,
+  &quot;rule_id&quot;: &quot;7ad99ca6839c02509c268d82e30ee293da9642bb9b4ea0c15a879ab1de34a8cd&quot;
+}</title><line x1="797" x2="797" y1="45" y2="255" stroke="#45bf9a"/><rect x="790" y="115" width="14" height="70" fill="#45bf9a"/></g><g tabindex="0" role="button" aria-label="查看精确原值" data-detail="{
+  &quot;venue&quot;: &quot;OKX&quot;,
+  &quot;instrument&quot;: &quot;BTC-USDT-SWAP&quot;,
+  &quot;market_kind&quot;: &quot;SWAP&quot;,
+  &quot;price_kind&quot;: &quot;trade&quot;,
+  &quot;base_asset&quot;: &quot;BTC&quot;,
+  &quot;quote_asset&quot;: &quot;USDT&quot;,
+  &quot;timeframe&quot;: &quot;1h&quot;,
+  &quot;open_time_ns&quot;: 1767250800000000000,
+  &quot;close_time_ns&quot;: 1767254400000000000,
+  &quot;event_time_ns&quot;: null,
+  &quot;acquired_ns&quot;: 1792592430181018000,
+  &quot;published_ns&quot;: null,
+  &quot;open&quot;: &quot;100.00&quot;,
+  &quot;high&quot;: &quot;102.00&quot;,
+  &quot;low&quot;: &quot;99.00&quot;,
+  &quot;close&quot;: &quot;101.00&quot;,
+  &quot;base_qty&quot;: &quot;1.00&quot;,
+  &quot;quote_qty&quot;: &quot;101.00&quot;,
+  &quot;contracts_qty&quot;: &quot;10&quot;,
+  &quot;state&quot;: &quot;OBSERVED&quot;,
+  &quot;rule_id&quot;: &quot;7ad99ca6839c02509c268d82e30ee293da9642bb9b4ea0c15a879ab1de34a8cd&quot;
+}"><title>{
+  &quot;venue&quot;: &quot;OKX&quot;,
+  &quot;instrument&quot;: &quot;BTC-USDT-SWAP&quot;,
+  &quot;market_kind&quot;: &quot;SWAP&quot;,
+  &quot;price_kind&quot;: &quot;trade&quot;,
+  &quot;base_asset&quot;: &quot;BTC&quot;,
+  &quot;quote_asset&quot;: &quot;USDT&quot;,
+  &quot;timeframe&quot;: &quot;1h&quot;,
+  &quot;open_time_ns&quot;: 1767250800000000000,
+  &quot;close_time_ns&quot;: 1767254400000000000,
+  &quot;event_time_ns&quot;: null,
+  &quot;acquired_ns&quot;: 1792592430181018000,
+  &quot;published_ns&quot;: null,
+  &quot;open&quot;: &quot;100.00&quot;,
+  &quot;high&quot;: &quot;102.00&quot;,
+  &quot;low&quot;: &quot;99.00&quot;,
+  &quot;close&quot;: &quot;101.00&quot;,
+  &quot;base_qty&quot;: &quot;1.00&quot;,
+  &quot;quote_qty&quot;: &quot;101.00&quot;,
+  &quot;contracts_qty&quot;: &quot;10&quot;,
+  &quot;state&quot;: &quot;OBSERVED&quot;,
+  &quot;rule_id&quot;: &quot;7ad99ca6839c02509c268d82e30ee293da9642bb9b4ea0c15a879ab1de34a8cd&quot;
+}</title><line x1="921" x2="921" y1="45" y2="255" stroke="#45bf9a"/><rect x="914" y="115" width="14" height="70" fill="#45bf9a"/></g><text x="55" y="292" fill="#abb7ca">UTC 纳秒窗口 [1767225600000000000, 1767254400000000000)</text></svg></section>
+<section><h2>逐棒精确原值</h2><pre id="detail">
+点击或用键盘选中K线查看OHLC、数量单位、取得时间和未知发布时间。
+</pre></section><h2>质量分项</h2><details open><summary>采集集合 28c4728927bf2d67</summary><table><thead><tr><th>质量项</th><th>状态</th><th>依据/未知项</th></tr></thead><tbody><tr><td>准确</td><td>UNVERIFIED</td><td>raw field mapping is not independent market truth</td></tr><tr><td>完整</td><td>PASS</td><td></td></tr><tr><td>一致</td><td>PASS</td><td></td></tr><tr><td>独立粒度证据</td><td>UNVERIFIED</td><td>same endpoint repeat is not an independent source</td></tr><tr><td>及时</td><td>UNKNOWN</td><td>historical publication/delivery evidence unavailable</td></tr><tr><td>唯一</td><td>PASS</td><td></td></tr><tr><td>有效</td><td>PASS</td><td></td></tr></tbody></table></details>
+<section><h2>缺口与修订</h2><pre>{
+  &quot;gaps&quot;: [],
+  &quot;revision&quot;: null,
+  &quot;query_window&quot;: {
+    &quot;start_ns&quot;: 1767225600000000000,
+    &quot;end_ns&quot;: 1767254400000000000
+  },
+  &quot;selection&quot;: {
+    &quot;status&quot;: &quot;RELEASE_STREAMS_SELECTED&quot;,
+    &quot;basis&quot;: &quot;stored collection/derivation windows; market completeness is UNKNOWN&quot;,
+    &quot;instruments&quot;: null,
+    &quot;timeframes&quot;: null,
+    &quot;streams&quot;: [
+      {
+        &quot;instrument&quot;: &quot;BTC-USDT-SWAP&quot;,
+        &quot;timeframe&quot;: &quot;1h&quot;,
+        &quot;coverage&quot;: [
+          {
+            &quot;start_ns&quot;: 1767225600000000000,
+            &quot;end_ns&quot;: 1767254400000000000
+          }
+        ]
+      }
+    ],
+    &quot;unmatched_instruments&quot;: [],
+    &quot;unmatched_timeframes&quot;: []
+  }
+}</pre></section>
+<details><summary>精确文本表（最多显示1000行；JSON报告保留本次查询全部行）</summary>
+<div class="scroll"><table><thead><tr><th>商品</th><th>周期</th><th>UTC ns</th>
+<th>开</th><th>高</th><th>低</th><th>收</th><th>base</th><th>quote</th>
+<th>contracts</th><th>状态</th></tr></thead><tbody><tr><td>BTC-USDT-SWAP</td><td>1h</td><td>1767225600000000000</td><td>100.00</td><td>102.00</td><td>99.00</td><td>101.00</td><td>1.00</td><td>101.00</td><td>10</td><td>OBSERVED</td></tr><tr><td>BTC-USDT-SWAP</td><td>1h</td><td>1767229200000000000</td><td>100.00</td><td>102.00</td><td>99.00</td><td>101.00</td><td>1.00</td><td>101.00</td><td>10</td><td>OBSERVED</td></tr><tr><td>BTC-USDT-SWAP</td><td>1h</td><td>1767232800000000000</td><td>100.00</td><td>102.00</td><td>99.00</td><td>101.00</td><td>1.00</td><td>101.00</td><td>10</td><td>OBSERVED</td></tr><tr><td>BTC-USDT-SWAP</td><td>1h</td><td>1767236400000000000</td><td>100.00</td><td>102.00</td><td>99.00</td><td>101.00</td><td>1.00</td><td>101.00</td><td>10</td><td>OBSERVED</td></tr><tr><td>BTC-USDT-SWAP</td><td>1h</td><td>1767240000000000000</td><td>100.00</td><td>102.00</td><td>99.00</td><td>101.00</td><td>1.00</td><td>101.00</td><td>10</td><td>OBSERVED</td></tr><tr><td>BTC-USDT-SWAP</td><td>1h</td><td>1767243600000000000</td><td>100.00</td><td>102.00</td><td>99.00</td><td>101.00</td><td>1.00</td><td>101.00</td><td>10</td><td>OBSERVED</td></tr><tr><td>BTC-USDT-SWAP</td><td>1h</td><td>1767247200000000000</td><td>100.00</td><td>102.00</td><td>99.00</td><td>101.00</td><td>1.00</td><td>101.00</td><td>10</td><td>OBSERVED</td></tr><tr><td>BTC-USDT-SWAP</td><td>1h</td><td>1767250800000000000</td><td>100.00</td><td>102.00</td><td>99.00</td><td>101.00</td><td>1.00</td><td>101.00</td><td>10</td><td>OBSERVED</td></tr></tbody></table></div>
+</details><p>历史发布时间缺证时保持UNKNOWN。
+工程结果不等于真实市场来源认证或独立验收通过。</p>
+</main><script>document.querySelector('#stream').addEventListener('change', e => {
+      document.querySelectorAll('[data-panel]').forEach(p => {
+        p.hidden = p.dataset.panel !== e.target.value;
+      });
+    });
+    document.querySelectorAll('[data-detail]').forEach(g => {
+      const show = () => { document.querySelector('#detail').textContent = g.dataset.detail; };
+      g.addEventListener('click', show);
+      g.addEventListener('focus', show);
+    });</script></body></html>

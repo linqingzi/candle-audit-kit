@@ -1,76 +1,60 @@
 # Candle Audit Kit
 
-Exact-decimal candle validation, original-response reconciliation and reproducible local datasets.
+Audit OKX candle files offline: find gaps and duplicates, reconcile CSV with native JSON, and preserve exact decimal values in reproducible datasets.
 
-[繁體中文起步說明](README.zh-TW.md)
+For quantitative researchers and Python data engineers checking local OHLCV inputs before research or backtesting.
 
-**0.1.0rc1 is a local pre-release prepared under the MIT license.** The maintainer confirmed
-that the inherited project code, tests and examples were developed under their direction with
-Codex and authorized MIT publication. Third-party dependencies retain their original terms.
-This is the first public pre-release. See [LICENSE](LICENSE),
-[PROVENANCE.md](PROVENANCE.md) and [third-party notices](THIRD_PARTY_NOTICES.md).
+[繁體中文](README.zh-TW.md) · [0.1.0rc1 release](https://github.com/linqingzi/candle-audit-kit/releases/tag/0.1.0rc1) · [MIT](LICENSE) · [CI](https://github.com/linqingzi/candle-audit-kit/actions/workflows/ci.yml)
 
-## What it does
+![Actual Candle Audit Kit HTML report from eight synthetic hourly candles, showing the synthetic-data label and UNVERIFIED source accuracy.](docs/images/synthetic-report.jpg)
 
-- Compare declared OKX trade-candle CSV data with original native JSON responses.
-- Check exact identity, time windows, gaps, duplicates, closed bars and quantity units.
-- Keep original decimal strings, immutable snapshots, Parquet data, revisions and source hashes.
-- Query verified local data with bounded DuckDB queries; aggregate complete UTC buckets.
-- Produce self-contained Chinese HTML/JSON quality reports without remote resources.
+**A real run, using invented data.** Eight hourly candles become two complete 4-hour bars. The report keeps `UNVERIFIED` and `UNKNOWN` visible; a successful consistency check does not certify a market source. [Download the full offline HTML report](docs/examples/synthetic-report.html) and open it locally. [Image provenance](docs/images/PROVENANCE.md).
 
-It does not place orders, use accounts, train models or certify that supplied data came from a
-real exchange. Supported inputs are OKX SPOT and linear USDT SWAP trade candles. Other venues,
-mark/index candles and inverse contracts are rejected. See [limitations](docs/limitations.md).
+## Quick start
 
-## Install
-
-Requires CPython 3.11–3.14 and macOS or Linux. The exact validated environment is recorded in
-`requirements-test-lock.txt`; no Windows support is claimed. The native wheels may impose a
-newer minimum OS version. All six direct runtime dependencies are explicitly pinned.
-
-From an extracted source archive:
+Requires CPython 3.11–3.14 on macOS or Linux. Use your installed supported Python executable in the venv command below. The first install downloads packages from official PyPI; the demo itself needs no network, account or API key.
 
 ```sh
+git clone https://github.com/linqingzi/candle-audit-kit.git
+cd candle-audit-kit
 python3.11 -m venv .venv
 . .venv/bin/activate
-python -m pip install --index-url https://pypi.org/simple -r requirements-test-lock.txt
-python -m pip install --no-build-isolation --no-deps .
-python -m pip check
-candle-audit --help
-```
-
-The first install downloads packages from PyPI. All examples and tests below operate on
-synthetic local inputs. The lock includes testing/build tools; a runtime-only installation is
-`python -m pip install .`, which installs the six runtime dependencies and their transitives.
-Do not install into a global Python environment.
-
-## Run the complete offline example
-
-```sh
-mkdir demo-workspace
-cd demo-workspace
+python -m pip install --index-url https://pypi.org/simple .
 candle-audit demo --root data/demo
 ```
 
-Expected result: `SYNTHETIC_DEMO_COMPLETE`, `rows: 8`, `aggregate_rows: 2`,
-`network_used: false`, `source_verification: UNVERIFIED`, `admission: NOT_EVALUATED`.
-The result gives the exact HTML/JSON report paths. Open the HTML file in a browser.
+Key output fields (the CLI also prints dataset IDs and report paths):
 
-The demo writes complete CSV/JSON/metadata/source/request/page inputs under `data/demo/inputs`,
-ingests a candidate, creates a native release, queries it, derives two 4-hour bars and renders
-a report. Prices and contract rules are invented engineering inputs. Changed demo input files
-are never silently overwritten. Source examples are also provided in `examples/synthetic/`.
+```json
+{
+  "status": "SYNTHETIC_DEMO_COMPLETE",
+  "rows": 8,
+  "aggregate_rows": 2,
+  "network_used": false,
+  "source_verification": "UNVERIFIED",
+  "admission": "NOT_EVALUATED"
+}
+```
 
-## Workspace and commands
+Open the file printed as `report.html_path`, under `data/demo/reports/`. It is self-contained HTML. The complete CSV, original-response JSON, metadata, source, request and page inputs are in `data/demo/inputs/`; source fixtures are in [examples/synthetic](examples/synthetic). Changed demo inputs are never silently overwritten. Install time depends on your connection and available native wheels.
 
-The workspace is your current directory, independent of the installed package location.
-Alternatively set `CANDLE_AUDIT_WORKSPACE` to an existing absolute directory without symlinks.
-No project file, other repository, or external service is required.
+## What you can check
 
-Only `data/` and `.tmp-data-layer/` inside that workspace are allowed for user inputs/outputs.
-Copy your authorized inputs into `data/` first. Traversal, escapes and unsafe file types remain
-rejected. Reads leave dataset versions unchanged but use bounded temporary verification files
-in `.tmp-data-layer/`; the workspace must be writable. Do not point it at a production system.
+| Need | What the tool provides |
+| --- | --- |
+| Compare an export with its original response | Field-by-field CSV/native-JSON reconciliation, preserving original decimal strings |
+| Find inconsistent candle inputs | Identity, gaps, duplicates, time windows, closed-bar and quantity-unit checks |
+| Keep a reproducible local dataset | Immutable snapshots and Parquet releases, revisions and source hashes |
+| Inspect a selected time window | Bounded DuckDB queries and aggregation of complete UTC buckets |
+| Review what remains unknown | Chinese HTML/JSON reports with explicit `UNVERIFIED` and `UNKNOWN` evidence states |
+
+## Scope and limits
+
+Supports OKX SPOT and linear USDT SWAP **trade candles**. Other venues, mark/index candles and inverse contracts are rejected. This is a pre-release. It does not place orders or use trading accounts. The synthetic demo is not live market data, and matching supplied files does not prove exchange origin or profitability.
+
+The workspace is your current directory, independent of package installation. Inputs and outputs are restricted to `data/` and `.tmp-data-layer/`. Alternatively set `CANDLE_AUDIT_WORKSPACE` to an existing absolute directory without symlinks. Reads preserve dataset versions but need writable temporary verification space. Native dependencies may impose additional minimum OS requirements; Windows support and market-scale performance are not claimed.
+
+## Commands and documentation
 
 ```sh
 candle-audit providers
@@ -81,30 +65,29 @@ candle-audit report --help
 python -m candle_audit.data_layer --help
 ```
 
-Use the demo's `release_id` with `read` or `report`. See [the interface](docs/data_layer_full.md)
-and [candidate ingestion](docs/data_layer_m1.md) for complete parameter examples.
+- [Candidate ingestion](docs/data_layer_m1.md): complete CSV/JSON import parameters.
+- [Dataset interface](docs/data_layer_full.md): collections, releases, reads, aggregation and reports.
+- [Validation evidence](docs/validation.md) and [limitations](docs/limitations.md): actual checks and their boundaries.
+- [Feedback and small first contributions](docs/contributing.md): reproducible issues, documentation and platform validation.
 
-## Run tests and build distributions
+## Reproduce tests and packaging
 
-From the extracted source root, with the isolated environment activated:
+From the source root, with the isolated environment activated:
 
 ```sh
+python -m pip install --index-url https://pypi.org/simple -r requirements-test-lock.txt
+python -m pip install --no-build-isolation --no-deps .
+python -m pip check
 python -B -m pytest -q
 python -m build --no-isolation
 ```
 
-Tests use synthetic fixtures and block socket connections. Property tests retain their
-1000-example settings and can take substantial time. For a fast development check only use
-`python -B -m pytest -q -m 'not property'`; it is not the full acceptance suite.
-The test harness creates its own temporary paths inside `.tmp-data-layer/`, without widening
-the production path allowlist. No credentials or real market downloads are required.
-Three inherited historical-artifact compatibility cases are explicitly skipped because their
-pre-standalone artifacts were not supplied. Three new relocation controls verify the current
-standalone format; they do not pretend to establish compatibility with missing old artifacts.
+The lock includes test/build tools in addition to the six pinned runtime dependencies. Tests use synthetic fixtures and block socket connections. The full suite retains 1000-example property settings and takes substantial time. For a fast development check only, use `python -B -m pytest -q -m 'not property'`.
 
-## License and support status
+The initial public CI completed with **662 passed, 0 failed and 3 skipped**. The three skips require missing pre-standalone historical artifacts; they establish no backward-compatibility guarantee. Three current-format relocation controls are tested separately. See the [actual run](https://github.com/linqingzi/candle-audit-kit/actions/runs/39603372781) and [current CI](https://github.com/linqingzi/candle-audit-kit/actions/workflows/ci.yml) for the precise environments and latest results. Other OS/Python combinations are not implied to have passed.
 
-Dependency notices and their original license texts are in `THIRD_PARTY_NOTICES.md` and
-`licenses/third-party/`. The maintainer confirmation covers project material; dependency rights remain separate. No third-party binaries, account data or private configuration are bundled.
-There is no claim of public adoption, external certification, production readiness or
-eligibility/selection for any grant program. See `RELEASE_STATUS.md` and `docs/validation.md` for the release status and validation limits.
+## License, provenance and support
+
+Project material is licensed under [MIT](LICENSE). The maintainer confirmed that the inherited project code, tests and examples were developed under their direction with Codex and authorized MIT publication. This does not relicense third-party dependencies. Their original terms and copyright texts remain in [third-party notices](THIRD_PARTY_NOTICES.md) and [licenses/third-party](licenses/third-party).
+
+See [source provenance](PROVENANCE.md), [license status](LICENSE-STATUS.md), [release status](RELEASE_STATUS.md) and [the changelog](CHANGELOG.md). No claim of established adoption, external certification, production readiness, OpenAI endorsement or grant selection is made.
