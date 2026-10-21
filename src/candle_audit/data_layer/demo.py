@@ -9,16 +9,17 @@ from pathlib import Path
 from .model import DataLayerError
 
 
-def run_demo(root: Path) -> dict[str, object]:
+def run_demo(root: Path, *, language: str = "zh-CN") -> dict[str, object]:
     from ._input import _directory_descriptor, controlled_path, read_bounded
     from .collection import CollectionRequest, Collector, FileImportProvider
     from .model import Window
     from .providers import ProviderRegistry
     from .reference import InstrumentRules
     from .releases import ReleaseStore
-    from .reporting import write_report
+    from .reporting import validate_report_language, write_report
     from .store import CandidateStore, _create_file, canonical, decode_document
 
+    validate_report_language(language)
     root = controlled_path(root)
     resources = files("candle_audit.data_layer").joinpath("_demo_data")
     inputs = {name: resources.joinpath(name).read_bytes()
@@ -65,7 +66,7 @@ def run_demo(root: Path) -> dict[str, object]:
         release.release_id, "4h", window, name="synthetic-4h", producer_id="example"
     )
     coarse = releases.reader().query(derived.release_id, window)
-    report = write_report(root / "reports", data, release)
+    report = write_report(root / "reports", data, release, language=language)
     return {
         "status": "SYNTHETIC_DEMO_COMPLETE", "network_used": False,
         "source_verification": "UNVERIFIED", "admission": "NOT_EVALUATED",
@@ -79,9 +80,11 @@ def run_demo(root: Path) -> dict[str, object]:
 def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=Path("data/demo"))
+    parser.add_argument("--language", choices=("zh-CN", "en"), default="zh-CN",
+                        help="HTML report language; JSON evidence is unchanged (default: zh-CN)")
     args = parser.parse_args(argv)
     try:
-        result = run_demo(args.root)
+        result = run_demo(args.root, language=args.language)
     except (DataLayerError, OSError) as exc:
         print(json.dumps({"status": "REJECTED", "error": str(exc)[:240]}))
         return 1

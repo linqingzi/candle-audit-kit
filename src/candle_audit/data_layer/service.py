@@ -46,9 +46,11 @@ def main(argv: Sequence[str]) -> int:
     aggregate.add_argument("--source-timeframes", nargs="+")
     aggregate.add_argument("--name", required=True)
     aggregate.add_argument("--producer", required=True)
-    report = commands.add_parser("report", help="中文质量/缺口/修订报告及所选输入K线")
+    report = commands.add_parser("report", help="Chinese/English quality, gaps, revisions and selected-input candles")
     report.add_argument("--output", type=Path, required=True)
     report.add_argument("--compare-parent", action="store_true")
+    report.add_argument("--language", choices=("zh-CN", "en"), default="zh-CN",
+                        help="HTML report language; JSON evidence is unchanged (default: zh-CN)")
     task = commands.add_parser("task", help="任务状态、失败告警、恢复入口")
     task.add_argument("--request-id", required=True)
     benchmark = commands.add_parser("benchmark", help="实际输入reader资源测量，无市场规模推断")
@@ -245,7 +247,8 @@ def main(argv: Sequence[str]) -> int:
                     if args.compare_parent and released.document["parent_id"]
                     else None
                 )
-                output = write_report(controlled_path(args.output), query, released, revision)
+                output = write_report(controlled_path(args.output), query, released, revision,
+                                      language=args.language)
         else:
             raise DataLayerError("unknown whole-module command")
         print(json.dumps(output, ensure_ascii=False, sort_keys=True, allow_nan=False))

@@ -5,6 +5,10 @@ This is the first public pre-release. Repository/release metadata on GitHub reco
 publication. Personal grant applications are separate from project licensing and validation.
 See docs/validation.md for evidence scope.
 
+Unreleased on current main: optional English HTML presentation (`--language en`) and a real
+English report capture. Chinese remains the default and JSON evidence is unchanged. These
+changes postdate the 0.1.0rc1 archive; its tag and assets have not been moved or replaced.
+
 The original snapshot, backups, environments and local acceptance evidence remain separate.
 The handoff includes exact test counts, archive hashes and the test/build logs. Long functional
 test evidence may be carried forward only after byte-for-byte runtime-source/test comparison;

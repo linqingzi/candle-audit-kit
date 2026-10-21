@@ -5,7 +5,7 @@ Pipeline: InstrumentRules → CollectionRequest → ProviderRegistry/Collector �
 canonical Parquet, queries, aggregation and reports on eight invented candles.
 
 ```sh
-candle-audit demo --root data/demo
+candle-audit demo --root data/demo --language en
 candle-audit collect --root data/imported --request data/demo/inputs/request.json --pages data/demo/inputs/pages.json
 # Use the actual returned collection/release identifiers for subsequent commands.
 candle-audit release --help
@@ -63,3 +63,9 @@ JSON/HTML reports use the selected canonical rows, escape dynamic text, preserve
 selection and distinguish data gaps from unknown market truth. HTML has no remote resource
 requests. Deployment, performance at market scale, public adoption and independent market
 certification are not claimed. See limitations.md and the release gate.
+
+On current `main`, `demo` and `report` accept `--language en` for an English HTML view or
+`--language zh-CN` for the original default Chinese view. Only project-owned interface labels
+are translated: exact candle values, user dataset names, statuses, JSON evidence and validation
+rules are retained. The JSON schema name remains unchanged for compatibility. This is new
+presentation support after the existing 0.1.0rc1 release; that release's archive is unchanged.

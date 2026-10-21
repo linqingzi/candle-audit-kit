@@ -1,18 +1,49 @@
 # Image and report provenance
 
-These assets show an actual run of Candle Audit Kit 0.1.0rc1. They do not use real exchange data, trading accounts, AI-generated report pixels or an invented application interface.
+These are real browser captures of generated synthetic reports, with no real market data,
+trading accounts, AI-generated report pixels or invented application interface.
 
-## Reproduce the report
+## English capture: new on main
 
-Run `candle-audit demo --root data/demo` in a fresh writable workspace, then open the HTML file printed as `report.html_path` in a browser. The packaged inputs are also in `examples/synthetic/`.
+The original tool produced Chinese reports only. Optional English HTML display was added on
+main after 0.1.0rc1; this screenshot demonstrates that new implementation, not a feature of
+the unchanged 0.1.0rc1 archive. Run the current source with:
 
-This capture completed with `SYNTHETIC_DEMO_COMPLETE`, 8 hourly rows, 2 complete four-hour rows, `network_used: false`, `source_verification: UNVERIFIED` and `admission: NOT_EVALUATED`. Prices and rules are invented engineering inputs. IDs may differ in later runs because capture evidence is versioned.
+```sh
+candle-audit demo --root data/demo --language en
+```
 
-- `synthetic-report.jpg`: an unmodified browser viewport screenshot of the real generated report, 931 × 1123 pixels. The screenshot contains no browser address bar, private path or account information.
-- `../examples/synthetic-report.html`: the corresponding self-contained generated HTML, preserved byte-for-byte. SHA256: `2df8f2367dc69cc4332395b073a2124d9ea2b72a6a097e61d780bb9382168968`.
-- `social-preview.jpg`: 1280 × 640 pixels, captured from `social-preview.html`. It combines descriptive project text with the same real report screenshot. The frame crops the image for the card layout; it does not change the report's values or evidence states.
-- `social-preview.html`: dependency-free HTML/CSS source for the share card. Serve this docs directory locally and capture its 1280 × 640 card area; no viewport or browser security setting needs to be changed.
+Then open the HTML file printed as `report.html_path`. This actual run completed with
+`SYNTHETIC_DEMO_COMPLETE`, 8 hourly rows, 2 complete four-hour rows, `network_used: false`,
+`source_verification: UNVERIFIED` and `admission: NOT_EVALUATED`. Prices and rules are invented
+engineering inputs. IDs can differ in later runs because capture evidence is versioned.
 
-Both JPEG files are below 1 MB and contain no EXIF entries. Screenshots were captured on 2026-10-21 from locally served files; no local URL is required for the published images.
+- `synthetic-report.en.jpg`: unmodified browser viewport screenshot, 931 × 1178 pixels.
+  The report labels, chart labels, controls, quality dimensions and evidence notices are English.
+- `../examples/synthetic-report.en.html`: the generated self-contained English HTML, copied
+  byte-for-byte. SHA256: `da00efc7d47e192d4bd4cb4463716a5e994876d86ef205eac016d2349cb8c98e`.
+- `social-preview.jpg`: 1280 × 640 capture of `social-preview.html`, now composing English
+  project text with the same real English report screenshot. The frame crops for layout;
+  it does not change values or evidence states. This file does not prove a repository social
+  preview setting has been applied.
+- `social-preview.html`: dependency-free HTML/CSS source for that share card.
 
-The runtime Python source was unchanged from the validated 0.1.0rc1 baseline when these assets were generated. The chart's instrument label identifies the input schema, not a claim of real market observations. `UNVERIFIED` and `UNKNOWN` remain meaningful limitations. Project-owned documentation and images follow the root MIT license; dependency copyright and license files are unchanged.
+Only project-owned display labels are translated. Exact values, dataset names, evidence
+statuses and JSON report schema/text are retained. Chinese remains the default. Neither
+`UNVERIFIED` nor `UNKNOWN` becomes verified through translation.
+
+## Original Chinese capture: retained
+
+Run `candle-audit demo --root data/demo` without a language option for the Chinese view.
+The original Chinese capture used the validated 0.1.0rc1 implementation; its files remain
+unchanged, and the Chinese README still uses that image.
+
+- `synthetic-report.jpg`: original 931 × 1123 browser viewport screenshot.
+- `../examples/synthetic-report.html`: original generated HTML, preserved byte-for-byte.
+  SHA256: `2df8f2367dc69cc4332395b073a2124d9ea2b72a6a097e61d780bb9382168968`.
+
+All JPEGs are below 1 MB and contain no EXIF segment. They were captured on 2026-10-21 from
+locally served files, without a browser address bar, private path or account information.
+No local URL is needed for the published assets, and no viewport or browser security setting
+was changed. Project documentation/images follow the root MIT license; third-party copyright
+and license files are unchanged.

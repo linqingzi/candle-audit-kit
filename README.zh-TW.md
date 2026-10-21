@@ -38,6 +38,8 @@ candle-audit demo --root data/demo
 
 開啟 `report.html_path` 指向的檔案，位置在 `data/demo/reports/`。HTML 報告可獨立離線查看。完整 CSV、原始 JSON、metadata、source、request 及 pages 輸入位於 `data/demo/inputs/`，原始合成樣例也在 [examples/synthetic](examples/synthetic)。你改過的範例輸入不會被默默覆寫。安裝時間視網路與原生套件是否可取得而定。
 
+本次 `main` 新增可選的 `--language en` 英文 HTML 展示，`demo` 與 `report` 均可使用；省略時保留原中文預設。JSON 證據的格式與文字不隨展示語言變更。既有 `0.1.0rc1` 壓縮包早於此功能，未變更。中文版首頁保留原中文報告圖；英文版改用真實生成的英文圖。
+
 ## 能檢查什麼
 
 | 需求 | 提供的功能 |
@@ -46,7 +48,7 @@ candle-audit demo --root data/demo
 | 發現 K 線輸入問題 | 身分、缺漏、重複、時間範圍、收棒狀態與數量單位檢查 |
 | 保存可重現的本地資料 | 不可變快照、Parquet 版本、修訂紀錄與來源雜湊 |
 | 查看指定時間窗口 | 有界限的 DuckDB 查詢、完整 UTC 時桶聚合 |
-| 理解證據缺口 | 中文 HTML／JSON 報告，明示 `UNVERIFIED`、`UNKNOWN` |
+| 理解證據缺口 | 中文或英文 HTML 展示、原格式 JSON 證據，明示 `UNVERIFIED`、`UNKNOWN` |
 
 ## 範圍與限制
 

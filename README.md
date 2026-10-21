@@ -6,9 +6,9 @@ For quantitative researchers and Python data engineers checking local OHLCV inpu
 
 [繁體中文](README.zh-TW.md) · [0.1.0rc1 release](https://github.com/linqingzi/candle-audit-kit/releases/tag/0.1.0rc1) · [MIT](LICENSE) · [CI](https://github.com/linqingzi/candle-audit-kit/actions/workflows/ci.yml)
 
-![Actual Candle Audit Kit HTML report from eight synthetic hourly candles, showing the synthetic-data label and UNVERIFIED source accuracy.](docs/images/synthetic-report.jpg)
+![Actual English Candle Audit Kit HTML report from eight synthetic hourly candles, including English report labels and explicit synthetic-data and unknown-evidence notices.](docs/images/synthetic-report.en.jpg)
 
-**A real run, using invented data.** Eight hourly candles become two complete 4-hour bars. The report keeps `UNVERIFIED` and `UNKNOWN` visible; a successful consistency check does not certify a market source. [Download the full offline HTML report](docs/examples/synthetic-report.html) and open it locally. [Image provenance](docs/images/PROVENANCE.md).
+**A real run, using invented data.** Eight hourly candles become two complete 4-hour bars. The report keeps `UNVERIFIED` and `UNKNOWN` visible; a successful consistency check does not certify a market source. [Download the full English offline HTML report](docs/examples/synthetic-report.en.html) and open it locally. [Image provenance](docs/images/PROVENANCE.md).
 
 ## Quick start
 
@@ -20,7 +20,7 @@ cd candle-audit-kit
 python3.11 -m venv .venv
 . .venv/bin/activate
 python -m pip install --index-url https://pypi.org/simple .
-candle-audit demo --root data/demo
+candle-audit demo --root data/demo --language en
 ```
 
 Key output fields (the CLI also prints dataset IDs and report paths):
@@ -36,7 +36,7 @@ Key output fields (the CLI also prints dataset IDs and report paths):
 }
 ```
 
-Open the file printed as `report.html_path`, under `data/demo/reports/`. It is self-contained HTML. The complete CSV, original-response JSON, metadata, source, request and page inputs are in `data/demo/inputs/`; source fixtures are in [examples/synthetic](examples/synthetic). Changed demo inputs are never silently overwritten. Install time depends on your connection and available native wheels.
+Open the file printed as `report.html_path`, under `data/demo/reports/`. It is self-contained HTML. **English HTML is new on `main`; the existing 0.1.0rc1 archive predates `--language en`.** Omit the option for the original Chinese view. The JSON evidence retains its original schema and text in either language. The complete CSV, original-response JSON, metadata, source, request and page inputs are in `data/demo/inputs/`; source fixtures are in [examples/synthetic](examples/synthetic). Changed demo inputs are never silently overwritten. Install time depends on your connection and available native wheels.
 
 ## What you can check
 
@@ -46,7 +46,7 @@ Open the file printed as `report.html_path`, under `data/demo/reports/`. It is s
 | Find inconsistent candle inputs | Identity, gaps, duplicates, time windows, closed-bar and quantity-unit checks |
 | Keep a reproducible local dataset | Immutable snapshots and Parquet releases, revisions and source hashes |
 | Inspect a selected time window | Bounded DuckDB queries and aggregation of complete UTC buckets |
-| Review what remains unknown | Chinese HTML/JSON reports with explicit `UNVERIFIED` and `UNKNOWN` evidence states |
+| Review what remains unknown | English or Chinese HTML views and unchanged JSON evidence with explicit `UNVERIFIED` and `UNKNOWN` states |
 
 ## Scope and limits
 

@@ -1,4 +1,4 @@
-"""Chinese quality/revision and actual-input K-line reports, plus measured reader resources."""
+"""Chinese/English HTML views of unchanged quality evidence and actual-input candles."""
 
 import html
 import json
@@ -8,12 +8,59 @@ import sys
 import time
 from decimal import Decimal, localcontext
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 
 from .artifacts import Artifacts
 from .model import DataLayerError, Window
 from .releases import CANDLE_SCHEMA, DatasetReader, DatasetResult, Release, consumer_scope
 from .store import canonical
+
+
+_ENGLISH_UI = {
+    "工程合成测试数据": "Engineered synthetic test data",
+    "历史数据声明 · 来源待独立审证": "Historical data declaration · provenance awaits independent review",
+    "外部审证及用户接受的研究版本": "Externally reviewed and user-accepted research release",
+    "本页使用所选输入，不插值、不补棒；原始精确文本可逐棒查看。":
+        "This view uses the selected input without interpolation or filling candles; inspect each candle's exact original text.",
+    "K线": "candles",
+    "EMPTY · 当前窗口无可用棒；市场缺棒/无成交事实 UNKNOWN。不生成零棒。":
+        "EMPTY · No candles available in this window; market-gap/no-trade facts remain UNKNOWN. No zero-value candles are generated.",
+    "查看精确原值": "View exact original values",
+    "所选输入K线": "Candles from the selected input",
+    "最高": "High", "最低": "Low", "UTC 纳秒窗口": "UTC nanosecond window",
+    "完整": "Completeness", "唯一": "Uniqueness", "一致": "Consistency",
+    "及时": "Timeliness", "有效": "Validity", "准确": "Accuracy",
+    "独立粒度证据": "Independent granularity evidence",
+    "采集集合": "Collection", "质量项": "Quality dimension", "状态": "Status",
+    "依据/未知项": "Evidence / unknowns",
+    "EMPTY · 当前窗口无数据": "EMPTY · No data in this window",
+    "保留规范schema；不推断无成交。": "The canonical schema is retained; no-trade facts are not inferred.",
+    "数据质量与K线": "Data quality and candles", "数据层 M01": "Data layer M01",
+    "质量与K线": "Quality and candles", "版本": "Release", "准入": "Mode",
+    "棒": "candles", "商品/周期组合": "instrument/timeframe combinations",
+    "商品与周期": "Instrument and timeframe", "空查询": "Empty query",
+    "逐棒精确原值": "Exact original values per candle",
+    "点击或用键盘选中K线查看OHLC、数量单位、取得时间和未知发布时间。":
+        "Click or focus a candle with the keyboard to inspect OHLC, quantity units, capture time and unknown publication time.",
+    "质量分项": "Quality dimensions", "缺口与修订": "Gaps and revisions",
+    "精确文本表（最多显示1000行；JSON报告保留本次查询全部行）":
+        "Exact-text table (up to 1000 displayed rows; the JSON report retains all rows in this query)",
+    "商品": "Instrument", "周期": "Timeframe", "开": "Open", "高": "High",
+    "低": "Low", "收": "Close",
+    "历史发布时间缺证时保持UNKNOWN。\n工程结果不等于真实市场来源认证或独立验收通过。":
+        "Historical publication time remains UNKNOWN without evidence.\nEngineering results do not certify market provenance or independent acceptance.",
+}
+
+
+def validate_report_language(language: str) -> None:
+    if type(language) is not str or language not in ("zh-CN", "en"):
+        raise DataLayerError("report language must be 'zh-CN' or 'en'")
+
+
+def _report_text(language: str) -> Callable[[str], str]:
+    validate_report_language(language)
+    # Translate only our UI literals, never dataset names, exact values or evidence payloads.
+    return _ENGLISH_UI.__getitem__ if language == "en" else lambda value: value
 
 
 def report_document(
@@ -107,8 +154,10 @@ def report_document(
 
 
 def render_report(
-    result: DatasetResult, release: Release, revision: dict[str, Any] | None = None
+    result: DatasetResult, release: Release, revision: dict[str, Any] | None = None,
+    *, language: str = "zh-CN",
 ) -> bytes:
+    text = _report_text(language)
     doc = report_document(result, release, revision)
     rows = result.table.to_pylist()
     groups: dict[str, list[dict[str, Any]]] = {}
@@ -121,9 +170,8 @@ def render_report(
         if not bars:
             panels.append(
                 f'<section class="panel" data-panel="{group_index}" '
-                f"{'hidden' if group_index else ''}><h2>{html.escape(key)} K线</h2>"
-                "<p>EMPTY · 当前窗口无可用棒；市场缺棒/无成交事实 UNKNOWN。"
-                "不生成零棒。</p></section>"
+                f"{'hidden' if group_index else ''}><h2>{html.escape(key)} {text('K线')}</h2>"
+                f"<p>{text('EMPTY · 当前窗口无可用棒；市场缺棒/无成交事实 UNKNOWN。不生成零棒。')}</p></section>"
             )
             continue
         low = min(Decimal(b["low"]) for b in bars)
@@ -146,7 +194,7 @@ def render_report(
                 detail = html.escape(json.dumps(bar, ensure_ascii=False, indent=2), quote=True)
                 width = min(14, max(1, 800 // len(bars)))
                 shapes.append(
-                    '<g tabindex="0" role="button" aria-label="查看精确原值" '
+                    f'<g tabindex="0" role="button" aria-label="{text("查看精确原值")}" '
                     f'data-detail="{detail}"><title>{detail}</title>'
                     f'<line x1="{x}" x2="{x}" y1="{coords["high"]}" '
                     f'y2="{coords["low"]}" stroke="{color}"/>'
@@ -156,26 +204,26 @@ def render_report(
                 )
         panels.append(
             f'<section class="panel" data-panel="{group_index}" '
-            f"{'hidden' if group_index else ''}><h2>{html.escape(key)} K线</h2>"
-            '<svg viewBox="0 0 1100 310" role="img" aria-label="所选输入K线">'
+            f"{'hidden' if group_index else ''}><h2>{html.escape(key)} {text('K线')}</h2>"
+            f'<svg viewBox="0 0 1100 310" role="img" aria-label="{text("所选输入K线")}">'
             '<text x="20" y="25" fill="#abb7ca">'
-            f"最高 {html.escape(str(high))} · 最低 {html.escape(str(low))}</text>"
+            f"{text('最高')} {html.escape(str(high))} · {text('最低')} {html.escape(str(low))}</text>"
             '<line x1="55" x2="1050" y1="265" y2="265" stroke="#324056"/>'
             f'{"".join(shapes)}<text x="55" y="292" fill="#abb7ca">'
-            f"UTC 纳秒窗口 [{result.window.start_ns}, {result.window.end_ns})"
+            f"{text('UTC 纳秒窗口')} [{result.window.start_ns}, {result.window.end_ns})"
             "</text></svg></section>"
         )
     options = "".join(
         f'<option value="{i}">{html.escape(key)}</option>' for i, key in enumerate(sorted(groups))
     )
     quality_names = {
-        "completeness": "完整",
-        "uniqueness": "唯一",
-        "consistency": "一致",
-        "timeliness": "及时",
-        "validity": "有效",
-        "accuracy": "准确",
-        "independent_granularity": "独立粒度证据",
+        "completeness": text("完整"),
+        "uniqueness": text("唯一"),
+        "consistency": text("一致"),
+        "timeliness": text("及时"),
+        "validity": text("有效"),
+        "accuracy": text("准确"),
+        "independent_granularity": text("独立粒度证据"),
     }
     diagnostics = []
     for collection_id, quality in result.quality.items():
@@ -186,8 +234,8 @@ def render_report(
             for k, v in quality.items()
         )
         diagnostics.append(
-            f"<details open><summary>采集集合 {html.escape(collection_id[:16])}</summary>"
-            "<table><thead><tr><th>质量项</th><th>状态</th><th>依据/未知项</th></tr></thead>"
+            f"<details open><summary>{text('采集集合')} {html.escape(collection_id[:16])}</summary>"
+            f"<table><thead><tr><th>{text('质量项')}</th><th>{text('状态')}</th><th>{text('依据/未知项')}</th></tr></thead>"
             f"<tbody>{cells}</tbody></table></details>"
         )
     price_rows = "".join(
@@ -226,7 +274,7 @@ def render_report(
 
     script_hash = base64.b64encode(hashlib.sha256(script.encode()).digest()).decode()
     empty_panel = (
-        "<section><h2>EMPTY · 当前窗口无数据</h2><p>保留规范schema；不推断无成交。</p></section>"
+        f"<section><h2>{text('EMPTY · 当前窗口无数据')}</h2><p>{text('保留规范schema；不推断无成交。')}</p></section>"
     )
     gap_text = html.escape(
         json.dumps(
@@ -240,13 +288,20 @@ def render_report(
             indent=2,
         )
     )
+    footer = text(
+        "历史发布时间缺证时保持UNKNOWN。\n"
+        "工程结果不等于真实市场来源认证或独立验收通过。"
+    )
+    counts = f"{len(rows)} 棒 · {len(groups)} 商品/周期组合"
+    if language == "en":
+        counts = f"Candles: {len(rows)} · Instrument/timeframe combinations: {len(groups)}"
     content = f"""<!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8">
+<html lang="{language}"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none';
 style-src 'unsafe-inline'; script-src 'sha256-{script_hash}';
 base-uri 'none'; form-action 'none'">
-<title>Candle Audit Kit 数据质量与K线</title><style>
+<title>Candle Audit Kit {text('数据质量与K线')}</title><style>
 body{{margin:0;background:#0e1420;color:#e6ecf5;font:15px system-ui,sans-serif}}
 main{{max-width:1180px;margin:40px auto;padding:0 24px}}
 h1{{font-size:32px;margin-bottom:10px}} h2{{font-size:21px}}
@@ -262,25 +317,24 @@ th,td{{padding:9px;text-align:left;border-bottom:1px solid #324056}}
 pre{{white-space:pre-wrap;word-break:break-word;line-height:1.5}}
 .scroll{{overflow:auto}} [hidden]{{display:none}}
 g:focus{{outline:2px solid #eee}} summary{{cursor:pointer}}
-</style></head><body><main><p>Candle Audit Kit · 数据层 M01</p>
-<h1>{html.escape(release.document["name"])} · 质量与K线</h1>
-<div class="badge">{html.escape(doc["label"])}</div>
-<p>版本 <code>{result.release_id}</code><br>
-准入 {result.mode} · {len(rows)} 棒 · {len(groups)} 商品/周期组合</p>
-<p>{html.escape(doc["boundaries"])}</p>
-<label for="stream">商品与周期 </label>
-<select id="stream">{options or "<option>空查询</option>"}</select>
+</style></head><body><main><p>Candle Audit Kit · {text('数据层 M01')}</p>
+<h1>{html.escape(release.document["name"])} · {text('质量与K线')}</h1>
+<div class="badge">{html.escape(text(doc["label"]))}</div>
+<p>{text('版本')} <code>{result.release_id}</code><br>
+{text('准入')} {result.mode} · {counts}</p>
+<p>{html.escape(text(doc["boundaries"]))}</p>
+<label for="stream">{text('商品与周期')} </label>
+<select id="stream">{options or '<option>' + text('空查询') + '</option>'}</select>
 {"".join(panels) or empty_panel}
-<section><h2>逐棒精确原值</h2><pre id="detail">
-点击或用键盘选中K线查看OHLC、数量单位、取得时间和未知发布时间。
-</pre></section><h2>质量分项</h2>{"".join(diagnostics)}
-<section><h2>缺口与修订</h2><pre>{gap_text}</pre></section>
-<details><summary>精确文本表（最多显示1000行；JSON报告保留本次查询全部行）</summary>
-<div class="scroll"><table><thead><tr><th>商品</th><th>周期</th><th>UTC ns</th>
-<th>开</th><th>高</th><th>低</th><th>收</th><th>base</th><th>quote</th>
-<th>contracts</th><th>状态</th></tr></thead><tbody>{price_rows}</tbody></table></div>
-</details><p>历史发布时间缺证时保持UNKNOWN。
-工程结果不等于真实市场来源认证或独立验收通过。</p>
+<section><h2>{text('逐棒精确原值')}</h2><pre id="detail">
+{text('点击或用键盘选中K线查看OHLC、数量单位、取得时间和未知发布时间。')}
+</pre></section><h2>{text('质量分项')}</h2>{"".join(diagnostics)}
+<section><h2>{text('缺口与修订')}</h2><pre>{gap_text}</pre></section>
+<details><summary>{text('精确文本表（最多显示1000行；JSON报告保留本次查询全部行）')}</summary>
+<div class="scroll"><table><thead><tr><th>{text('商品')}</th><th>{text('周期')}</th><th>UTC ns</th>
+<th>{text('开')}</th><th>{text('高')}</th><th>{text('低')}</th><th>{text('收')}</th><th>base</th><th>quote</th>
+<th>contracts</th><th>{text('状态')}</th></tr></thead><tbody>{price_rows}</tbody></table></div>
+</details><p>{footer}</p>
 </main><script>{script}</script></body></html>"""
     data = content.encode()
     if len(data) > 8 * 1024 * 1024:
@@ -289,10 +343,12 @@ g:focus{{outline:2px solid #eee}} summary{{cursor:pointer}}
 
 
 def write_report(
-    output: Path, result: DatasetResult, release: Release, revision: dict[str, Any] | None = None
+    output: Path, result: DatasetResult, release: Release, revision: dict[str, Any] | None = None,
+    *, language: str = "zh-CN",
 ) -> dict[str, Any]:
+    validate_report_language(language)
     artifacts = Artifacts(output)
-    html_id = artifacts.put(render_report(result, release, revision))
+    html_id = artifacts.put(render_report(result, release, revision, language=language))
     json_id = artifacts.put(canonical(report_document(result, release, revision)))
     return {
         "status": "REPORT_CREATED",

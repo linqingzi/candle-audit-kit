@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased on main — 2026-10-21
+
+- Add optional English HTML views through `demo --language en` and `report --language en`.
+  Chinese remains the default; machine-readable JSON evidence, exact data and validation rules
+  are unchanged. The existing 0.1.0rc1 release/tag/archive is not replaced.
+- Replace the English README's Chinese report image with an actual generated English report;
+  retain the original Chinese image and disclose capture/reproduction details.
+
 ## 0.1.0rc1 — 2026-10-21
 
 - Standalone `candle-audit-kit` distribution, `candle_audit` imports and `candle-audit` command.
